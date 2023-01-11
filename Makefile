@@ -6,37 +6,37 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/11 20:23:11 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/11 23:19:09 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= 	
+SRCS=	
 
-MAINSRCS	= 	main.c
+MAINSRC= main.c
 
-HEADERS		= 	includes/
+HEADERS= includes/
 
-LFT_HEADERS	=	libft/includes/
+LFT_HEADERS= libft/includes/
 
-MLX_HEADERS	=	FdF_files/minilibx_macos/
+MLX_HEADERS= FdF_files/minilibx_macos/
 
-OBJS		= 	${SRCS:.c=.o}
+OBJS=	${SRCS:.c=.o}
 
-MAIN		= 	${MAINSRCS:.c=.o}
+MAIN=	${MAINSRC:.c=.o}
 
-NAME		= 	fdf
+NAME=	fdf
 
-LIBFTNAME	= 	libft.a
+LIBFTNAME= libft.a
 
-LIBFTPATH	=	libft/
+LIBFTPATH= libft/
 
-LIBMLXPATH	=	FdF_files/minilibx_macos/
+LIBMLXPATH= FdF_files/minilibx_macos/
 
-CC			= 	@gcc
+CC=		@gcc
 
-RM			= 	@rm -f
+RM=		@rm -f
 
-CFLAGS		= 	-Wall -Wextra -Werror
+CFLAGS=	-Wall -Wextra -Werror
 
 all			:	${NAME}
 
