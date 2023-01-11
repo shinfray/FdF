@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/11 18:25:20 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/11 18:52:10 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ HEADERS		= 	includes/
 
 LFT_HEADERS	=	libft/includes/
 
+MLX_HEADERS	=	FdF_files/minilibx_macos/
+
 OBJS		= 	${SRCS:.c=.o}
 
 MAIN		= 	${MAINSRCS:.c=.o}
@@ -28,6 +30,8 @@ LIBNAME		= 	libft.a
 
 LIBPATH		=	libft/
 
+LIBMLXPATH	=	FdF_files/minilibx_macos/
+
 CC			= 	@gcc
 
 RM			= 	@rm -f
@@ -35,10 +39,10 @@ RM			= 	@rm -f
 CFLAGS		= 	-Wall -Wextra -Werror
 
 .c.o		:
-				${CC} ${CFLAGS} -I ${HEADERS} -I ${LFT_HEADERS} -c $< -o ${<:.c=.o}
+				${CC} ${CFLAGS} -I ${HEADERS} -I ${LFT_HEADERS} -I ${MLX_HEADERS} -c $< -o ${<:.c=.o}
 
 ${NAME}		:	${LIBNAME} ${MAIN} ${OBJS}
-				${CC} -o ${NAME} -I ${HEADERS} -I ${LFT_HEADERS} ${MAIN} ${OBJS} -L${LIBPATH} -lft
+				${CC} -o ${NAME} -I ${HEADERS} -I ${LFT_HEADERS} -I ${MLX_HEADERS} ${MAIN} ${OBJS} -L${LIBPATH} -lft -L${LIBMLXPATH} -lmlx -framework OpenGL -framework Appkit
 				@echo "fdf is ready to use"
 
 ${LIBNAME}		:
