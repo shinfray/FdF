@@ -6,45 +6,37 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/12 01:00:18 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/12 18:14:47 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS=	
-MAINSRC= main.c
+SRCS=	srcs/main.c
 OBJS=	${SRCS:.c=.o}
-MAIN=	${MAINSRC:.c=.o}
 NAME=	fdf
 LIBFTNAME= libft.a
 LIBFTPATH= libft/
-CC=		@gcc
-RM=		@rm -f
 CFLAGS=	-Wall -Wextra -Werror
-CPPFLAGS= -Iincludes/ -Ilibft/includes/ -IFdF_files/minilibx_macos/
-LDFLAGS= -Llibft -LFdF_files/minilibx_macos
-LDLIBS=	-lft -lmlx ${FRAMEWORKS}
-FRAMEWORKS= -framework OpenGL -framework Appkit
+INC_DIR= includes/ libft/includes/ FdF_files/minilibx_macos/
+LIB_DIR= libft/ FdF_files/minilibx_macos/
+CPPFLAGS= ${addprefix -I,${INC_DIR}}
+LDFLAGS= ${addprefix -L,${LIB_DIR}}
+LDLIBS=	-lm -lft -lmlx -framework OpenGL -framework Appkit
 
 all			:	${NAME}
 
-${NAME}		:	${LIBFTNAME} ${MAIN} ${OBJS}
-				${CC} ${CPPFLAGS} ${LDFLAGS} ${LDLIBS} \
-				${MAIN} ${OBJS} \
-				-o ${NAME}
-				@echo "fdf is ready to use"
+${NAME}		:	${OBJS} ${LIBFTNAME}
+				${CC} ${CPPFLAGS} ${LDFLAGS} ${LDLIBS} ${OBJS} -o ${NAME}
 
 ${LIBFTNAME}:
-				@make -C ${LIBFTPATH}
+				make -C ${LIBFTPATH}
 
 clean		:
-				@make clean -C ${LIBFTPATH}
+				make clean -C ${LIBFTPATH}
 				${RM} ${OBJS} ${MAIN}
-				@echo "fdf objects files deleted"
 
 fclean		:	clean
 				${RM} ${LIBFTPATH}${LIBFTNAME}
 				${RM} ${NAME}
-				@echo "fdf executable and libft.a deleted"
 
 re			:	fclean all
 

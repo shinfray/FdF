@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/12 00:32:31 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/12 17:39:07 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,27 +58,21 @@ SRCS=	srcs/libft/ft_isalpha.c \
 		srcs/ft_printf/ft_printf_hexa.c \
 		srcs/get_next_line/get_next_line_bonus.c \
 		srcs/get_next_line/get_next_line_utils_bonus.c
-HEADERS= includes/
 OBJS=	${SRCS:.c=.o}
 NAME=	libft.a
-CC=		@gcc
-RM=		@rm -f
 CFLAGS=	-Wall -Wextra -Werror
-CPPFLAGS= -I${HEADERS}
+CPPFLAGS= -Iincludes/
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			@ar rcs ${NAME} ${OBJS}
-			@echo "libft.a is ready to use"
+			${AR} rcs ${NAME} ${OBJS}
 
 clean:
 			${RM} ${OBJS}
-			@echo "libft objects files cleaned"
 
 fclean:		clean
 			${RM} ${NAME}
-			@echo "libft.a deleted"
 
 re:			fclean all
 
