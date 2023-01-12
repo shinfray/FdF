@@ -6,39 +6,32 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/11 23:23:57 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/12 01:00:18 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS=	
 MAINSRC= main.c
-HEADERS= includes/
-LFT_HEADERS= libft/includes/
-MLX_HEADERS= FdF_files/minilibx_macos/
 OBJS=	${SRCS:.c=.o}
 MAIN=	${MAINSRC:.c=.o}
 NAME=	fdf
 LIBFTNAME= libft.a
 LIBFTPATH= libft/
-LIBMLXPATH= FdF_files/minilibx_macos/
 CC=		@gcc
 RM=		@rm -f
 CFLAGS=	-Wall -Wextra -Werror
+CPPFLAGS= -Iincludes/ -Ilibft/includes/ -IFdF_files/minilibx_macos/
+LDFLAGS= -Llibft -LFdF_files/minilibx_macos
+LDLIBS=	-lft -lmlx ${FRAMEWORKS}
+FRAMEWORKS= -framework OpenGL -framework Appkit
 
 all			:	${NAME}
 
 ${NAME}		:	${LIBFTNAME} ${MAIN} ${OBJS}
-				${CC} -o ${NAME} \
-				-I ${HEADERS} -I ${LFT_HEADERS} -I ${MLX_HEADERS} \
+				${CC} ${CPPFLAGS} ${LDFLAGS} ${LDLIBS} \
 				${MAIN} ${OBJS} \
-				-L${LIBFTPATH} -lft -L${LIBMLXPATH} -lmlx \
-				-framework OpenGL -framework Appkit
+				-o ${NAME}
 				@echo "fdf is ready to use"
-
-.c.o		:
-				${CC} ${CFLAGS} \
-				-I ${HEADERS} -I ${LFT_HEADERS} -I ${MLX_HEADERS} \
-				-c $< -o ${<:.c=.o}
 
 ${LIBFTNAME}:
 				@make -C ${LIBFTPATH}

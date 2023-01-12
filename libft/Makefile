@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/11 23:27:53 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/12 00:32:31 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,15 +64,13 @@ NAME=	libft.a
 CC=		@gcc
 RM=		@rm -f
 CFLAGS=	-Wall -Wextra -Werror
+CPPFLAGS= -I${HEADERS}
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
 			@ar rcs ${NAME} ${OBJS}
 			@echo "libft.a is ready to use"
-
-.c.o:
-			${CC} ${CFLAGS} -I ${HEADERS} -c $< -o ${<:.c=.o}
 
 clean:
 			${RM} ${OBJS}
