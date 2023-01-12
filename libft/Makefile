@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/12 17:39:07 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/12 18:43:39 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ CPPFLAGS= -Iincludes/
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			${AR} rcs ${NAME} ${OBJS}
+			${AR} rcs $@ $^
 
 clean:
 			${RM} ${OBJS}

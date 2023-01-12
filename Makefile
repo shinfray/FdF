@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/12 18:19:50 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/12 18:42:31 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LDLIBS=	-lm -lft -lmlx -framework OpenGL -framework Appkit
 all			:	${NAME}
 
 ${NAME}		:	${OBJS} ${LIBFT}
-				${CC} ${CPPFLAGS} ${LDFLAGS} ${LDLIBS} ${OBJS} -o ${NAME}
+				${CC} ${LDFLAGS} ${OBJS} ${LDLIBS} -o $@
 
 ${LIBFT}:
 				make -C ${LIBFTPATH}
