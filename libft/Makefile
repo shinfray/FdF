@@ -6,11 +6,11 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/12 18:43:39 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/16 12:57:14 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS=	srcs/libft/ft_isalpha.c \
+SRCS:=	srcs/libft/ft_isalpha.c \
 		srcs/libft/ft_isdigit.c \
 		srcs/libft/ft_isalnum.c \
 		srcs/libft/ft_isascii.c \
@@ -58,15 +58,15 @@ SRCS=	srcs/libft/ft_isalpha.c \
 		srcs/ft_printf/ft_printf_hexa.c \
 		srcs/get_next_line/get_next_line_bonus.c \
 		srcs/get_next_line/get_next_line_utils_bonus.c
-OBJS=	${SRCS:.c=.o}
-NAME=	libft.a
-CFLAGS=	-Wall -Wextra -Werror
-CPPFLAGS= -Iincludes/
+OBJS:=	${SRCS:.c=.o}
+NAME:=	libft.a
+CFLAGS:= -Wall -Wextra -Werror
+CPPFLAGS:= -Iincludes/
+ARFLAGS:= crs
 
 all:		${NAME}
 
-${NAME}:	${OBJS}
-			${AR} rcs $@ $^
+${NAME}:	${NAME}(${OBJS})
 
 clean:
 			${RM} ${OBJS}
