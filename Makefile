@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/16 15:11:11 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/16 15:24:25 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ SRCS:=	srcs/main.c
 OBJS:=	${SRCS:%.c=%.o}
 NAME:=	fdf
 LIBFT:=	libft/libft.a
-LIBFTPATH:= libft/
 CFLAGS:= -Wall -Wextra -Werror
 INC_DIR:= includes/ libft/includes/ FdF_files/minilibx_macos/
 LIB_DIR:= libft/ FdF_files/minilibx_macos/
@@ -28,10 +27,10 @@ ${NAME}		:	${OBJS} ${LIBFT}
 				${CC} ${LDFLAGS} ${OBJS} ${LDLIBS} -o $@
 
 ${LIBFT}:
-				${MAKE} -C ${LIBFTPATH}
+				${MAKE} -C ${dir ${LIBFT}}
 
 clean		:
-				${MAKE} clean -C ${LIBFTPATH}
+				${MAKE} clean -C ${dir ${LIBFT}}
 				${RM} ${OBJS}
 
 fclean		:	clean
