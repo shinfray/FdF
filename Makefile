@@ -6,9 +6,11 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/16 16:16:28 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/16 19:56:30 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.DELETE_ON_ERROR:
 
 SRCSDIR:= srcs/
 SRCSFDF:= main.c
