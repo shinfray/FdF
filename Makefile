@@ -6,11 +6,13 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/16 15:24:25 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/16 15:55:17 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS:=	srcs/main.c
+SRCSDIR:= srcs/
+SRCSFDF:= main.c
+SRCS:=	${addprefix ${SRCSDIR},${SRCSFDF}}
 OBJS:=	${SRCS:%.c=%.o}
 NAME:=	fdf
 LIBFT:=	libft/libft.a
