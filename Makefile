@@ -6,12 +6,12 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/16 13:48:09 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/16 15:11:11 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS:=	srcs/main.c
-OBJS:=	${SRCS:.c=.o}
+OBJS:=	${SRCS:%.c=%.o}
 NAME:=	fdf
 LIBFT:=	libft/libft.a
 LIBFTPATH:= libft/
