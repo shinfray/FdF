@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/16 15:54:06 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/16 16:16:47 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ GNLSRCS:=	get_next_line_bonus.c \
 SRCS:=	${addprefix ${SRCSDIR}libft/, ${LIBFTSRCS}}
 SRCS+=	${addprefix ${SRCSDIR}ft_printf/, ${FTPRINTFSRCS}}
 SRCS+=	${addprefix ${SRCSDIR}get_next_line/, ${GNLSRCS}}
-OBJS:=	${SRCS:%.c=%.o}
+OBJS:=	${SRCS:.c=.o}
 NAME:=	libft.a
 CFLAGS:= -Wall -Wextra -Werror
 CPPFLAGS:= -Iincludes/
