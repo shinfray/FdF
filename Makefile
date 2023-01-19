@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/17 00:13:20 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/19 10:52:49 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
 DEPS:=	${OBJS:.o=.d}
 
 LIBFT:=	libft/libft.a
+MLX:=	FdF_files/minilibx_macos/libmlx.a
 CFLAGS:= -Wall -Wextra -Werror
 
 ROOT_INC_DIRS:= includes libft/includes FdF_files/minilibx_macos
@@ -40,11 +41,14 @@ RM:=	rm -rf
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${LIBFT}
+${NAME}: ${OBJS} ${LIBFT} ${MLX}
 	${CC} ${LDFLAGS} ${OBJS} ${LDLIBS} -o $@
 
 ${LIBFT}:
 	${MAKE} -C ${dir ${LIBFT}}
+
+${MLX}:
+	${MAKE} -C ${dir ${MLX}}
 
 ${BUILD_DIR}/%.o: %.c
 	mkdir -p $(dir $@)
@@ -55,6 +59,7 @@ clean:
 	${RM} ${BUILD_DIR}
 
 fclean: clean
+	${MAKE} clean -C ${dir ${MLX}}
 	${RM} ${LIBFT}
 	${RM} ${NAME}
 
