@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:26:06 by shinfray          #+#    #+#             */
-/*   Updated: 2022/10/12 22:21:42 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/30 00:13:40 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	ft_putnbr_fd(int n, int fd)
 		uns_n = -n;
 	}
 	if (uns_n > 9)
-	{
 		ft_putnbr_fd(uns_n / 10, fd);
-	}
 	ft_putchar_fd('0' + uns_n % 10, fd);
 }

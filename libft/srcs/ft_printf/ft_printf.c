@@ -6,73 +6,77 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/11 01:16:47 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:34:03 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_print(const char **format)
+static char	*ft_strchr(const char *s, int c)
 {
-	const char *const	ptr = *format;
-	int					len;
+	const char	c2 = c;
 
-	len = 0;
-	while (**format != '%' && **format != '\0')
-		++(*format);
-	len = write(1, ptr, *format - ptr);
-	if (**format == '%')
-		++(*format);
-	return (len);
+	while (*s != c2)
+		if (*s++ == '\0')
+			return (NULL);
+	return ((char *)s);
 }
 
-static char	ft_check_errors(int *count, int *temp)
+static int	ft_print(const char *format)
 {
-	if (*count < *temp)
-		return (-1);
-	*temp = *count;
-	return (0);
+	int	len;
+
+	len = 0;
+	while (format[len] != '%' && format[len] != '\0')
+		++len;
+	return (write(1, format, len));
 }
 
 static int	ft_print_flags(const char *format, va_list *ap)
 {
-	if (*format == 's')
-		return (ft_print_s(va_arg(*ap, char *)));
-	else if (*format == 'c')
-		return (ft_print_c(va_arg(*ap, int)));
-	else if (*format == 'd' || *format == 'i')
-		return (ft_print_d_i(va_arg(*ap, int)));
-	else if (*format == 'u')
-		return (ft_print_u(va_arg(*ap, unsigned int)));
-	else if (*format == 'p')
-		return (ft_print_p(va_arg(*ap, void *)));
-	else if (*format == 'x' || *format == 'X')
-		return (ft_print_x(va_arg(*ap, unsigned int), *format));
-	else
-		return (write(1, "%", 1));
+	int			(*function_list[8])(va_list *);
+	char		*flag_position;
+	const char	flags[10] = "scdiupxX%";
+
+	flag_position = ft_strchr(flags, format[1]);
+	(function_list[0]) = &ft_print_s;
+	(function_list[1]) = &ft_print_c;
+	(function_list[2]) = &ft_print_d_i;
+	(function_list[3]) = &ft_print_d_i;
+	(function_list[4]) = &ft_print_u;
+	(function_list[5]) = &ft_print_p;
+	(function_list[6]) = &ft_print_x;
+	(function_list[7]) = &ft_print_upper_x;
+	if (flag_position != NULL)
+	{
+		if (*flag_position == '%')
+			return (write(1, "%", 1));
+		return ((*function_list[flag_position - flags])(ap));
+	}
+	return (-1);
 }
 
 static int	ft_parse_format(const char *format, va_list *ap)
 {
 	int	count;
-	int	temp;
+	int	return_value;
 
 	count = 0;
-	temp = 0;
+	return_value = 0;
 	while (*format != '\0')
 	{
-		count += ft_print(&format);
-		if (ft_check_errors(&count, &temp) < 0)
+		return_value = ft_print(format);
+		if (return_value < 0)
 			return (-1);
-		if (*format != '\0' && ft_strchr("scdiupxX%", (int)(*format)) != NULL)
-		{
-			count += ft_print_flags(format, ap);
-			if (ft_check_errors(&count, &temp) < 0)
-				return (-1);
-		}
-		else
-			continue ;
-		++format;
+		format += return_value;
+		count += return_value;
+		if (*format == '\0')
+			return (count);
+		return_value = ft_print_flags(format, ap);
+		if (return_value < 0)
+			return (-1);
+		count += return_value;
+		format += 2;
 	}
 	return (count);
 }

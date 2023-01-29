@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/17 00:11:10 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/29 23:41:36 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,8 @@ FTPRINTF_SRCS:=	ft_printf.c \
 				ft_printf_flags.c \
 				ft_printf_hexa.c
 
-GNL_SRCS:=	get_next_line_bonus.c \
-			get_next_line_utils_bonus.c
+GNL_SRCS:=	get_next_line.c \
+			get_next_line_utils.c
 
 SRCS:=	${addprefix ${SRCS_DIR}/libft/, ${LIBFT_SRCS}}
 SRCS+=	${addprefix ${SRCS_DIR}/ft_printf/, ${FTPRINTF_SRCS}}

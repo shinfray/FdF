@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 18:19:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/09 16:32:48 by shinfray         ###   ########.fr       */
+/*   Created: 2023/01/22 19:08:25 by shinfray          #+#    #+#             */
+/*   Updated: 2023/01/27 00:54:11 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,21 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	cast_dst = (char *)dst;
 	cast_src = (const char *)src;
-	if (n == 0 || cast_src == cast_dst)
+	if (cast_src == cast_dst)
 		return (dst);
-	while (n--)
+	while (n-- > 0)
 		*cast_dst++ = *cast_src++;
 	return (dst);
 }
 
 size_t	ft_gnl_strlen(const char *str)
 {
-	const char *const	ptr = str;
+	size_t	i;
 
-	if (str == NULL)
-		return (0);
-	while (*str != '\0')
-		++str;
-	return (str - ptr);
+	i = 0;
+	while (str[i] != '\0')
+		++i;
+	return (i);
 }
 
 void	*ft_calloc(size_t count, size_t size)
@@ -46,43 +45,34 @@ void	*ft_calloc(size_t count, size_t size)
 	i = 0;
 	ptr = malloc(full_size);
 	if (ptr != NULL)
-	{
 		while (i < full_size)
 			ptr[i++] = '\0';
-	}
 	return (ptr);
 }
 
-char	*ft_gnl_strnjoin(char **s1, char const *s2, size_t n)
+char	*ft_gnl_strnjoin(char *s1, const char *s2, size_t n_from_s2_to_copy)
 {
 	size_t	s1_len;
-	size_t	s2_len;
-	char	*str;
+	char	*dest_str;
 
-	s1_len = ft_gnl_strlen(*s1);
-	s2_len = ft_gnl_strlen(s2);
-	if (n < s2_len)
-		s2_len = n;
-	str = ft_calloc(s1_len + s2_len + 1, sizeof(*str));
-	if (str != NULL)
+	if (s1 != NULL)
+		s1_len = ft_gnl_strlen(s1);
+	else
+		s1_len = 0;
+	dest_str = ft_calloc(s1_len + n_from_s2_to_copy + 1, sizeof(*dest_str));
+	if (dest_str != NULL)
 	{
-		ft_memcpy(str, *s1, s1_len);
-		ft_memcpy(str + s1_len, s2, s2_len);
+		ft_memcpy(dest_str, s1, s1_len);
+		ft_memcpy(dest_str + s1_len, s2, n_from_s2_to_copy);
 	}
-	if (s1 != NULL && *s1 != NULL)
-		free(*s1);
-	*s1 = NULL;
-	return (str);
+	if (s1 != NULL)
+		free(s1);
+	return (dest_str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_gnl_strchr(const char *s)
 {
-	const char	c2 = c;
-
-	while (*s != c2)
-	{
-		if (*s++ == '\0')
-			return (NULL);
-	}
+	while (*s != '\n' && *s != '\0')
+			++s;
 	return ((char *)s);
 }
