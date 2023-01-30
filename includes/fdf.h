@@ -6,13 +6,14 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/16 22:59:18 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:06:45 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include <errno.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>

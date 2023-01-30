@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/30 15:46:58 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:18:40 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_check_key_pressed(int keycode, void *param)
 	(void)param;
 	ft_printf("=====KEY PRESSED=====\nkeycode: %d\n", keycode);
 	if (keycode == 53)
-		exit(0);
+		exit(EXIT_SUCCESS);
 	return (0);
 }
 
