@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/01/19 10:52:49 by shinfray         ###   ########.fr        #
+#    Updated: 2023/01/30 12:42:22 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ LIBFT:=	libft/libft.a
 MLX:=	FdF_files/minilibx_macos/libmlx.a
 CFLAGS:= -Wall -Wextra -Werror
 
-ROOT_INC_DIRS:= includes libft/includes FdF_files/minilibx_macos
-INC_DIRS:= ${shell find ${ROOT_INC_DIRS} -type d}
+# ROOT_INC_DIRS:= includes libft/includes FdF_files/minilibx_macos
+# INC_DIRS:= ${shell find ${ROOT_INC_DIRS} -type d}
+INC_DIRS:= includes libft/includes FdF_files/minilibx_macos
 
 CPPFLAGS:= ${addprefix -I,${INC_DIRS}} -MMD -MP
 
