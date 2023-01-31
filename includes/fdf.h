@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/31 13:54:47 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:24:33 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct	s_window_data {
 }				t_window_data;
 
 typedef struct	s_image_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
+	void	*image;
+	char	*address;
+	int		bpp;
 	int		line_length;
 	int		endian;
 }				t_image_data;

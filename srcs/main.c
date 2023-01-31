@@ -6,11 +6,30 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/31 13:09:51 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:27:53 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	ft_pixel_put_image(t_image_data *image, int x, int y, int color)
+{
+	char    *pixel;
+	int		i;
+
+	i = image->bpp - 8;
+    pixel = image->address + (y * image->line_length + x * (image->bpp / 8));
+	while (i >= 0)
+	{
+		/* big endian, MSB is the leftmost bit */
+		if (image->endian != 0)
+			*pixel++ = (color >> i) & 0xFF;
+		/* little endian, LSB is the leftmost bit */
+		else
+			*pixel++ = (color >> (image->bpp - 8 - i)) & 0xFF;
+		i -= 8;
+	}
+}
 
 int	ft_check_mouse_click(int button, int x, int y, void *param)
 {
@@ -19,14 +38,14 @@ int	ft_check_mouse_click(int button, int x, int y, void *param)
 	return (0);
 }
 
-int	ft_check_key_pressed(int keycode, t_data *param)
+int	ft_check_key_pressed(int keycode, t_window_data *param)
 {
 	(void)param;
 	ft_printf("=====KEY PRESSED=====\nkeycode: %d\n", keycode);
 	return (0);
 }
 
-int	ft_close(t_data *param)
+int	ft_close(t_window_data *param)
 {
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
 	free(param->mlx_ptr);
