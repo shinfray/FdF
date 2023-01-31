@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/31 19:56:10 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:33:23 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_draw_bordure(t_image_data *img, t_rect s_rect)
 	while (i < s_rect.y + s_rect.height - 1)
 	{
 		ft_pixel_put_image(img, s_rect.x, i, s_rect.color);
-		ft_pixel_put_image(img, s_rect.x + s_rext.width - 1, i, s_rect.color);
+		ft_pixel_put_image(img, s_rect.x + s_rect.width - 1, i, s_rect.color);
 		++i;
 	}
 	j = s_rect.x;
@@ -113,6 +113,7 @@ int	main(void)
 	ft_draw_rectangle(&window.s_image, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0x00FFFFFF});
 	ft_draw_rectangle(&window.s_image, (t_rect){0, 0, 50, 50, 0x004a78b6});
 	ft_draw_rectangle(&window.s_image, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, 0x00E398AB});
+	ft_draw_bordure(&window.s_image, (t_rect){200, 200, 200, 200, 0x004a78b6});
 	mlx_put_image_to_window(window.mlx_ptr, window.win_ptr, window.s_image.image, 0, 0);
 	mlx_mouse_hook(window.win_ptr, &ft_check_mouse_click, NULL);
 	mlx_key_hook(window.win_ptr, &ft_check_key_pressed, &window);
