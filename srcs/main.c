@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/31 12:27:06 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:55:32 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ int	main(void)
 	t_data	window;
 
 	window.mlx_ptr = mlx_init();
+	if (window.mlx_ptr == NULL)
+		exit(EXIT_FAILURE);
 	window.win_ptr = mlx_new_window(window.mlx_ptr, 1000, 1000, "FdF");
+	if (window.win_ptr == NULL)
+	{
+		free(window.win_ptr);
+		exit(EXIT_FAILURE);
+	}
 	mlx_mouse_hook(window.win_ptr, &ft_check_mouse_click, NULL);
 	mlx_key_hook(window.win_ptr, &ft_check_key_pressed, &window);
 	mlx_hook(window.win_ptr, ON_DESTROY, 0, &ft_close, &window);
