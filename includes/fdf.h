@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/31 15:24:33 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:49:54 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ enum	e_events{
 	ON_DESTROY = 17
 };
 
-typedef struct	s_window_data {
-	void	*mlx_ptr;
-	void	*win_ptr;
-}				t_window_data;
-
 typedef struct	s_image_data {
 	void	*image;
 	char	*address;
@@ -46,5 +41,19 @@ typedef struct	s_image_data {
 	int		line_length;
 	int		endian;
 }				t_image_data;
+
+typedef struct	s_data {
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_image_data	s_image;
+}				t_data;
+
+typedef struct	s_rect {
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}				t_rect;
 
 #endif
