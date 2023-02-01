@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/02/01 09:53:00 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/02/01 14:41:48 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,48 @@ int	ft_draw_bordure(t_img_data *s_img, t_rect s_rect)
 	return (0);
 }
 
+#define RED 0x00A576B7
+
+void drawCircle(t_img_data *s_img, int xc, int yc, int x, int y)
+{
+    ft_pixel_put_image(s_img, xc+x, yc+y, RED);
+    ft_pixel_put_image(s_img, xc-x, yc+y, RED);
+    ft_pixel_put_image(s_img, xc+x, yc-y, RED);
+    ft_pixel_put_image(s_img, xc-x, yc-y, RED);
+    ft_pixel_put_image(s_img, xc+y, yc+x, RED);
+    ft_pixel_put_image(s_img, xc-y, yc+x, RED);
+    ft_pixel_put_image(s_img, xc+y, yc-x, RED);
+    ft_pixel_put_image(s_img, xc-y, yc-x, RED);
+}
+ 
+// Function for circle-generation
+// using Bresenham's algorithm
+void circleBres(t_img_data *s_img, int xc, int yc, int r)
+{
+    int x = 0, y = r;
+    int d = 3 - 2 * r;
+    drawCircle(s_img, xc, yc, x, y);
+    while (y >= x)
+    {
+        // for each pixel we will
+        // draw all eight pixels
+         
+        x++;
+ 
+        // check for decision parameter
+        // and correspondingly
+        // update d, x, y
+        if (d > 0)
+        {
+            y--;
+            d = d + 4 * (x - y) + 10;
+        }
+        else
+            d = d + 4 * x + 6;
+        drawCircle(s_img, xc, yc, x, y);
+    }
+}
+
 int	main(void)
 {
 	t_data	s_window;
@@ -114,6 +156,7 @@ int	main(void)
 	ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, 50, 50, 0x004a78b6});
 	ft_draw_rectangle(&s_window.s_img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, 0x00E398AB});
 	ft_draw_bordure(&s_window.s_img, (t_rect){200, 200, 200, 200, 0x004a78b6});
+	circleBres(&s_window.s_img, 150, 150, 100); 
 	mlx_put_image_to_window(s_window.mlx_ptr, s_window.win_ptr, s_window.s_img.img, 0, 0);
 	mlx_mouse_hook(s_window.win_ptr, &ft_mouse_click, NULL);
 	mlx_key_hook(s_window.win_ptr, &ft_key_pressed, &s_window);
