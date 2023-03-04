@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/02/01 16:15:33 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:29:45 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct	s_img_data {
 }				t_img_data;
 
 typedef struct	s_data {
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	t_img_data	s_img;
 }				t_data;
 
@@ -58,6 +58,14 @@ typedef struct	s_rect {
 	int	height;
 	int	color;
 }				t_rect;
+
+typedef struct s_coordinates {
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
+	int	color;
+}				t_coordinates;
 
 /*	DRAWING FUNCTIONS	*/
 void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color);
@@ -70,5 +78,9 @@ void	ft_circle_bres(t_img_data *s_img, int xc, int yc, int r);
 int	ft_mouse_click(int button, int x, int y, void *param);
 int	ft_key_pressed(int keycode, t_data *param);
 int	ft_close(t_data *param);
+
+
+/*	BRESENHAM'S FUNCTIONS	*/
+void	draw_line(t_img_data *s_img, t_coordinates coordinates);
 
 #endif

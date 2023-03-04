@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/02/01 16:13:20 by shinfray         ###   ########.fr        #
+#    Updated: 2023/03/04 14:48:54 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS_DIR:= srcs
 
 SRCS_FDF:= 	main.c \
 			drawing.c \
-			events.c
+			events.c \
+			bresenham.c
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_FDF}}
 
 OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}

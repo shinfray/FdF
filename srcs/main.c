@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/02/01 16:55:11 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:34:51 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,7 @@ int	main(void)
 
 	ft_initialize(&s_window, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
 	ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0x00FFFFFF});
-	ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, 100, 100, 0x004a78b6});
-	ft_draw_rectangle(&s_window.s_img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, 0x00E398AB});
-	ft_draw_rectangle(&s_window.s_img, (t_rect){0, WINDOW_HEIGHT - 100, 100, 100, 0x00A59EB7});
-	ft_draw_rectangle(&s_window.s_img, (t_rect){WINDOW_WIDTH - 100, 0, 100, 100, 0x0087BADE});
-	ft_draw_bordure(&s_window.s_img, (t_rect){120, 120, WINDOW_WIDTH - 240, WINDOW_HEIGHT - 240, 0x004A78B6});
-	ft_circle_bres(&s_window.s_img, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 100); 
+	draw_line(&s_window.s_img, (t_coordinates){400, 400, 45, 29, 00000000});
 	mlx_put_image_to_window(s_window.mlx_ptr, s_window.win_ptr, s_window.s_img.img, 0, 0);
 	ft_initialize_hooks(&s_window);
 	mlx_loop(s_window.mlx_ptr);
