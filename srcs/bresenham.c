@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
+/*   Updated: 2023/03/04 18:41:44 by shinfray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-#include <stdio.h>
 
 static void 	draw_line_sharp(t_img_data *s_img, t_coordinates coordinates)
 {
