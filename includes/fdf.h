@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/03/04 18:29:45 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/03/05 17:50:55 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include "libft.h"
 # include "ft_printf.h"
-# include "get_next_line_bonus.h"
+# include "get_next_line.h"
 # include "mlx.h"
 
 #define WINDOW_WIDTH 1080
@@ -66,6 +66,15 @@ typedef struct s_coordinates {
 	int	y2;
 	int	color;
 }				t_coordinates;
+
+typedef struct s_point {
+	void	*prev;
+	int		x;
+	int		y;
+	int		z;
+	int		color;
+	void	*next;
+}				t_point;
 
 /*	DRAWING FUNCTIONS	*/
 void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color);
