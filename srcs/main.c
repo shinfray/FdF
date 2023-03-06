@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/03/04 18:34:51 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:58:25 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	main(void)
 	t_data	s_window;
 
 	ft_initialize(&s_window, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
-	ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0x00FFFFFF});
-	draw_line(&s_window.s_img, (t_coordinates){400, 400, 45, 29, 00000000});
+	//ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0xFFFFFF});
+	draw_line(&s_window.s_img, (t_coordinates){400, 400, 45, 29, 0x00FFFFFF});
 	mlx_put_image_to_window(s_window.mlx_ptr, s_window.win_ptr, s_window.s_img.img, 0, 0);
 	ft_initialize_hooks(&s_window);
 	mlx_loop(s_window.mlx_ptr);
