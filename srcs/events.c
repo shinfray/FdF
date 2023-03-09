@@ -19,5 +19,4 @@ int	ft_close(t_data *param)
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
 	free(param->mlx_ptr);
 	exit(EXIT_SUCCESS);
-	return (0);
 }

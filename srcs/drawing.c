@@ -40,7 +40,6 @@ int	ft_draw_bordure(t_img_data *s_img, t_rect s_rect)
 	int	i;
 	int	j;
 
-
 	i = s_rect.y;
 	j = s_rect.x;
 	while (j < s_rect.x + s_rect.width)

@@ -6,9 +6,14 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:43:39 by shinfray          #+#    #+#             */
-/*   Updated: 2023/03/06 11:59:29 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:39:48 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// int	parse_map(int fd)
+// {
+	
+
+// }
