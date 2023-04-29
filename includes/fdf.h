@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/03/09 14:10:57 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:09:05 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 #define WINDOW_WIDTH 1080
 #define WINDOW_HEIGHT 720
+#define	ESCAPE_KEY 53
 
 enum	e_events{
 	ON_KEYDOWN = 2,
@@ -82,12 +83,15 @@ void	ft_draw_circle(t_img_data *s_img, int xc, int yc, int x, int y);
 void	ft_circle_bres(t_img_data *s_img, int xc, int yc, int r);
 
 /*	EVENTS FUNCTIONS	*/
-int	ft_mouse_click(int button, int x, int y, void *param);
+int	ft_mouse_click(int button, int x, int y, t_data *param);
 int	ft_key_pressed(int keycode, t_data *param);
 int	ft_close(t_data *param);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/
 void	draw_line(t_img_data *s_img, t_coordinates coordinates);
+
+/*	PARSE FUNCTIONS	*/
+t_point	*ft_parse_map(char *file);
 
 #endif

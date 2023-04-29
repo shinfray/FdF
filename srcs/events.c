@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int	ft_mouse_click(int button, int x, int y, void *param)
+int	ft_mouse_click(int button, int x, int y, t_data *param)
 {
 	(void)param;
 	ft_printf("=====MOUSE=====\nbutton number: %d\nx: %d\ny: %d\n", button, x, y);
@@ -9,7 +9,8 @@ int	ft_mouse_click(int button, int x, int y, void *param)
 
 int	ft_key_pressed(int keycode, t_data *param)
 {
-	(void)param;
+	if (keycode == ESCAPE_KEY)
+		return (ft_close(param));
 	ft_printf("=====KEY PRESSED=====\nkeycode: %d\n", keycode);
 	return (0);
 }

@@ -6,17 +6,38 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/03/04 18:41:44 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:05:54 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static void 	draw_line_sharp(t_img_data *s_img, t_coordinates coordinates);
+static void 	draw_line_obtuse(t_img_data *s_img, t_coordinates coordinates);
+unsigned int	ft_abs(int number);
+
+void	draw_line(t_img_data *s_img, t_coordinates coordinates)
+{
+	int	dx = ft_abs(coordinates.x2 - coordinates.x1);
+	int	dy = ft_abs(coordinates.y2 - coordinates.y1);
+	if (dx > dy)
+		draw_line_sharp(s_img, coordinates);
+	else
+		draw_line_obtuse(s_img, coordinates);
+}
+
+unsigned int	ft_abs(int number)
+{
+	if (number < 0)
+		return (-number);
+	return (number);
+}
+
 static void 	draw_line_sharp(t_img_data *s_img, t_coordinates coordinates)
 {
-	int			e = abs(coordinates.x2 - coordinates.x1);
+	int			e = ft_abs(coordinates.x2 - coordinates.x1);
 	const int	dx = 2 * e;
-	const int	dy = 2 * abs(coordinates.y2 - coordinates.y1);
+	const int	dy = 2 * ft_abs(coordinates.y2 - coordinates.y1);
 	int			x_increment;
 	int			y_increment;
 
@@ -42,8 +63,8 @@ static void 	draw_line_sharp(t_img_data *s_img, t_coordinates coordinates)
 
 static void 	draw_line_obtuse(t_img_data *s_img, t_coordinates coordinates)
 {
-	int			e = abs(coordinates.y2 - coordinates.y1);
-	const int	dx = 2 * abs(coordinates.x2 - coordinates.x1);
+	int			e = ft_abs(coordinates.y2 - coordinates.y1);
+	const int	dx = 2 * ft_abs(coordinates.x2 - coordinates.x1);
 	const int	dy = 2 * e;
 	int			x_increment;
 	int			y_increment;
@@ -68,12 +89,3 @@ static void 	draw_line_obtuse(t_img_data *s_img, t_coordinates coordinates)
 	ft_pixel_put_image(s_img, coordinates.x1, coordinates.y1, coordinates.color);
 }
 
-void	draw_line(t_img_data *s_img, t_coordinates coordinates)
-{
-	int	dx = abs(coordinates.x2 - coordinates.x1);
-	int	dy = abs(coordinates.y2 - coordinates.y1);
-	if (dx > dy)
-		draw_line_sharp(s_img, coordinates);
-	else
-		draw_line_obtuse(s_img, coordinates);
-}
