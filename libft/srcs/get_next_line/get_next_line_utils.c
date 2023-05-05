@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 19:08:25 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/27 00:54:11 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:18:49 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	ft_gnl_strlen(const char *str)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_gnl_calloc(size_t count, size_t size)
 {
 	const size_t	full_size = size * count;
 	size_t			i;
@@ -59,7 +59,7 @@ char	*ft_gnl_strnjoin(char *s1, const char *s2, size_t n_from_s2_to_copy)
 		s1_len = ft_gnl_strlen(s1);
 	else
 		s1_len = 0;
-	dest_str = ft_calloc(s1_len + n_from_s2_to_copy + 1, sizeof(*dest_str));
+	dest_str = ft_gnl_calloc(s1_len + n_from_s2_to_copy + 1, sizeof(*dest_str));
 	if (dest_str != NULL)
 	{
 		ft_memcpy(dest_str, s1, s1_len);

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:50:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/01/29 23:30:50 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:19:19 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*ft_parse(int fd, char *line, char **stash)
 	ssize_t	bytes_read;
 	char	*newline;
 
-	*stash = ft_calloc(BUFFER_SIZE + 1, sizeof(**stash));
+	*stash = ft_gnl_calloc(BUFFER_SIZE + 1, sizeof(**stash));
 	if (*stash == NULL)
 		return (ft_free(&line));
 	bytes_read = read(fd, *stash, BUFFER_SIZE);
