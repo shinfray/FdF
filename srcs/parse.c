@@ -15,76 +15,65 @@
 static ssize_t	ft_map_size(int fd);
 static size_t	ft_array_of_string_len(const char **array);
 static char	*ft_free_row(char **row);
+static void	ft_print_error_and_exit(void);
 
 t_point	*ft_parse_map(char *file)
 {
 	t_point	*map_data;
 	int		fd;
 	ssize_t	array_size;
-	// char	**row;
-	// int		x;
-	// int		y;
-	// int		i;
-	// int		j;
+	char	**row;
+	int		x;
+	int		y;
+	int		i;
+	int		j;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("ERROR");
-		exit(EXIT_FAILURE);
-	}
+		ft_print_error_and_exit();
 	array_size = ft_map_size(fd);
 	close(fd);
 	if (array_size == -1)
-	{
-		perror("ERROR");
-		exit(EXIT_FAILURE);
-	}
-	
+		ft_print_error_and_exit();
+	map_data = ft_calloc(array_size + 1, sizeof(*map_data));
+	if (map_data == NULL)
+		ft_print_error_and_exit();
+	map_data = ft_calloc(array_size + 1, sizeof(*map_data));
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
+		ft_print_error_and_exit();
+	i = 0;
+	row = ft_split(get_next_line(fd), ' ');
+	while (row != NULL)
 	{
-		perror("ERROR");
-		exit(EXIT_FAILURE);
+		x = 0;
+		y = 0;
+		i = 0;
+		while (row[j] != NULL)
+		{
+			map_data[i].x = x++;
+			map_data[i].y = y;
+			map_data[i++].z = ft_atoi(row[j++]);
+		}
+		ft_free_row(row);
+		x = 0;
+		++y;
+		j = 0;
+		row = ft_split(get_next_line(fd), ' ');
 	}
-
-	// j = 0;
-
-	// row = ft_split(get_next_line(fd), ' ');
-	// // protéger row
-	// while (row != NULL)
-	// {
-	// 	map_data = ft_calloc(ft_array_of_string_len((const char **)row) + 1, sizeof(*map_data));
-	// 	if (map_data == NULL)
-	// 		{
-	// 			close(fd);
-	// 			perror("ERROR");
-	// 			exit(EXIT_FAILURE);
-	// 		}
-	// 	x = 0;
-	// 	y = 0;
-	// 	i = 0;
-	// 	while (row[i] != NULL)
-	// 	{
-	// 		map_data[j].x = x++;
-	// 		map_data[j].y = y;
-	// 		map_data[j++].z = ft_atoi(row[i++]);
-	// 	}
-	// 	ft_free_row(row);
-	// 	x = 0;
-	// 	++y;
-	// 	i = 0;
-	// 	row = ft_split(get_next_line(fd), ' ');
-	// 	// protéger row
-	// }
-
 	close(fd);
 	return (NULL);
 }
 
+static void	ft_print_error_and_exit(void)
+{
+	perror("ERROR");
+	exit(EXIT_FAILURE);
+}
+
 static ssize_t	ft_map_size(int fd)
 {
-	const char	**row;
+	char	**row;
 	size_t		total_column;
 	size_t		total_row;
 
@@ -96,10 +85,10 @@ static ssize_t	ft_map_size(int fd)
 			perror("ERROR");
 			exit(EXIT_FAILURE);
 		}
-	total_column = ft_array_of_string_len(row);
+	total_column = ft_array_of_string_len((const char **)row);
 	while (row != NULL)
 	{
-		if (total_column != 0 && total_column != ft_array_of_string_len(row))
+		if (total_column != 0 && total_column != ft_array_of_string_len((const char **)row))
 		{
 			ft_free_row(row);
 			return (-1);
@@ -118,7 +107,7 @@ static size_t	ft_array_of_string_len(const char **array)
 	if (array == NULL)
 		return (0);
 	ptr = array;
-	while (ptr != NULL)
+	while (*ptr != NULL)
 		++ptr;
 	return (ptr - array);
 }
