@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/04/29 19:09:05 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/06 09:22:57 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_point {
 	int		y;
 	int		z;
 	int		color;
+	int		last_point;
 }				t_point;
 
 /*	DRAWING FUNCTIONS	*/

@@ -35,25 +35,30 @@ t_point	*ft_parse_map(char *file)
 	close(fd);
 	if (array_size == -1)
 		ft_print_error_and_exit();
-	map_data = ft_calloc(array_size + 1, sizeof(*map_data));
+	map_data = ft_calloc(array_size, sizeof(*map_data));
 	if (map_data == NULL)
 		ft_print_error_and_exit();
-	map_data = ft_calloc(array_size + 1, sizeof(*map_data));
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_print_error_and_exit();
 	i = 0;
+	x = 0;
+	y = 0;
 	row = ft_split(get_next_line(fd), ' ');
 	while (row != NULL)
 	{
-		x = 0;
-		y = 0;
-		i = 0;
 		while (row[j] != NULL)
 		{
-			map_data[i].x = x++;
+			map_data[i].x = x;
 			map_data[i].y = y;
-			map_data[i++].z = ft_atoi(row[j++]);
+			map_data[i].z = ft_atoi(row[j]);
+			if (array_size-- > 1)
+				map_data[i].last_point = 0;
+			else
+				map_data[i].last_point = 1;
+			++x;
+			++i;
+			++j;
 		}
 		ft_free_row(row);
 		x = 0;
@@ -62,7 +67,7 @@ t_point	*ft_parse_map(char *file)
 		row = ft_split(get_next_line(fd), ' ');
 	}
 	close(fd);
-	return (NULL);
+	return (map_data);
 }
 
 static void	ft_print_error_and_exit(void)
