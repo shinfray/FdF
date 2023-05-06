@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/04/29 17:05:54 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:44:29 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void 	draw_line_sharp(t_img_data *s_img, t_coordinates coordinates);
 static void 	draw_line_obtuse(t_img_data *s_img, t_coordinates coordinates);
 unsigned int	ft_abs(int number);
 
-void	draw_line(t_img_data *s_img, t_coordinates coordinates)
+void	ft_draw_line(t_img_data *s_img, t_coordinates coordinates)
 {
 	int	dx = ft_abs(coordinates.x2 - coordinates.x1);
 	int	dy = ft_abs(coordinates.y2 - coordinates.y1);

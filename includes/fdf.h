@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/06 09:22:57 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/06 12:04:40 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ typedef struct s_point {
 	int		last_point;
 }				t_point;
 
+
+typedef struct	s_map_data {
+	t_point	*map;
+	int		total_row;
+	int		total_column;
+}				t_map_data;
+
 /*	DRAWING FUNCTIONS	*/
 void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color);
 int		ft_draw_rectangle(t_img_data *s_img, t_rect s_rect);
@@ -90,9 +97,12 @@ int	ft_close(t_data *param);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/
-void	draw_line(t_img_data *s_img, t_coordinates coordinates);
+void	ft_draw_line(t_img_data *s_img, t_coordinates coordinates);
 
 /*	PARSE FUNCTIONS	*/
-t_point	*ft_parse_map(char *file);
+void	ft_parse_map(char *file, t_map_data *map_data);
+
+/*	ISOMETRICS FUNCTIONS	*/
+void	ft_print_map(t_map_data *map_data, t_img_data *s_img);
 
 #endif

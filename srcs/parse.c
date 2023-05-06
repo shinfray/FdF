@@ -12,14 +12,14 @@
 
 #include "fdf.h"
 
-static ssize_t	ft_map_size(int fd);
-static size_t	ft_array_of_string_len(const char **array);
+static ssize_t	ft_map_size(int fd, t_map_data *map_data);
+static int	ft_array_of_string_len(const char **array);
 static char	*ft_free_row(char **row);
 static void	ft_print_error_and_exit(void);
 
-t_point	*ft_parse_map(char *file)
+void	ft_parse_map(char *file, t_map_data *map_data)
 {
-	t_point	*map_data;
+	t_point	*map;
 	int		fd;
 	ssize_t	array_size;
 	char	**row;
@@ -31,11 +31,11 @@ t_point	*ft_parse_map(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_print_error_and_exit();
-	array_size = ft_map_size(fd);
+	array_size = ft_map_size(fd, map_data);
 	close(fd);
 	if (array_size == -1)
 		ft_print_error_and_exit();
-	map_data = ft_calloc(array_size, sizeof(*map_data));
+	map = ft_calloc(array_size, sizeof(*map_data));
 	if (map_data == NULL)
 		ft_print_error_and_exit();
 	fd = open(file, O_RDONLY);
@@ -49,13 +49,13 @@ t_point	*ft_parse_map(char *file)
 	{
 		while (row[j] != NULL)
 		{
-			map_data[i].x = x;
-			map_data[i].y = y;
-			map_data[i].z = ft_atoi(row[j]);
+			map[i].x = x;
+			map[i].y = y;
+			map[i].z = ft_atoi(row[j]);
 			if (array_size-- > 1)
-				map_data[i].last_point = 0;
+				map[i].last_point = 0;
 			else
-				map_data[i].last_point = 1;
+				map[i].last_point = 1;
 			++x;
 			++i;
 			++j;
@@ -67,7 +67,7 @@ t_point	*ft_parse_map(char *file)
 		row = ft_split(get_next_line(fd), ' ');
 	}
 	close(fd);
-	return (map_data);
+	map_data->map = map;
 }
 
 static void	ft_print_error_and_exit(void)
@@ -76,13 +76,11 @@ static void	ft_print_error_and_exit(void)
 	exit(EXIT_FAILURE);
 }
 
-static ssize_t	ft_map_size(int fd)
+static ssize_t	ft_map_size(int fd, t_map_data *map_data)
 {
 	char	**row;
-	size_t		total_column;
-	size_t		total_row;
 
-	total_row = 0;
+	map_data->total_row = 0;
 	row = ft_split(get_next_line(fd), ' ');
 	if (row == NULL)
 		{
@@ -90,23 +88,23 @@ static ssize_t	ft_map_size(int fd)
 			perror("ERROR");
 			exit(EXIT_FAILURE);
 		}
-	total_column = ft_array_of_string_len((const char **)row);
+	map_data->total_column = ft_array_of_string_len((const char **)row);
 	while (row != NULL)
 	{
-		if (total_column != 0 && total_column != ft_array_of_string_len((const char **)row))
+		if (map_data->total_column != 0 && map_data->total_column != ft_array_of_string_len((const char **)row))
 		{
 			ft_free_row(row);
 			errno = EFTYPE;
 			return (-1);
 		}
 		ft_free_row(row);
-		++total_row;
+		++(map_data->total_row);
 		row = ft_split(get_next_line(fd), ' ');
 	}
-	return (total_column * total_row);
+	return (map_data->total_column * map_data->total_row);
 }
 
-static size_t	ft_array_of_string_len(const char **array)
+static int	ft_array_of_string_len(const char **array)
 {
 	const char	**ptr;
 

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:39:17 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/04 19:39:18 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:11:54 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color)
 	char    *pixel;
 	int		i;
 
+	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
+		return ;
 	i = s_image->bpp - 8;
     pixel = s_image->addr + (y * s_image->line_len + x * (s_image->bpp / 8));
 	while (i >= 0)
@@ -30,6 +32,21 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color)
 		i -= 8;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int	ft_draw_rectangle(t_img_data *s_img, t_rect s_rect)
 {
