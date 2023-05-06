@@ -96,6 +96,7 @@ static ssize_t	ft_map_size(int fd)
 		if (total_column != 0 && total_column != ft_array_of_string_len((const char **)row))
 		{
 			ft_free_row(row);
+			errno = EFTYPE;
 			return (-1);
 		}
 		ft_free_row(row);
