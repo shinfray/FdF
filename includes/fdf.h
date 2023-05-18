@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/06 12:04:40 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:39:20 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ int	ft_close(t_data *param);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/
-void	ft_draw_line(t_img_data *s_img, t_coordinates coordinates);
+void	ft_draw_line(t_img_data *s_img, t_point start, t_point end);
 
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_map(char *file, t_map_data *map_data);
 
 /*	ISOMETRICS FUNCTIONS	*/
-void	ft_print_map(t_map_data *map_data, t_img_data *s_img);
+void	ft_print_map(t_map_data *map_data, t_img_data *s_img, int interspace, int height);
 
 #endif

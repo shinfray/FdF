@@ -56,6 +56,7 @@ void	ft_parse_map(char *file, t_map_data *map_data)
 			map_data->map[i].x = x;
 			map_data->map[i].y = y;
 			map_data->map[i].z = ft_atoi(row[j]);
+			map_data->map[i].color = 0xFF0000; 
 			if (array_size-- > 1)
 				map_data->map[i].last_point = 0;
 			else
