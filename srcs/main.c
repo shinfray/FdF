@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/06 14:01:55 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:41:25 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	main(int argc, char **argv)
 		perror("ERROR");
 		exit(EXIT_FAILURE);
 	}
+	
 	ft_parse_map(argv[1], &map_data);
+
 
 	// int	i = 0;
 	// while (map_data[i].last_point != 1)
