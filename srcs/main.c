@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 16:50:42 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:53:44 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	ft_parse_map(&s_fdf);
 
 	ft_initialize_window(&(s_fdf.mlx_data));
-	ft_print_map(&(s_fdf.map_data), &(s_fdf.mlx_data.s_img), s_fdf.s_isometric_data.interspace, s_fdf.s_isometric_data.height);
+	ft_print_map(&s_fdf);
 	//ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0xFFFFFF});
 	//ft_draw_line(&s_window.s_img, (t_point){483, 46, 0, 0x00FF0000, 0}, (t_point){12, 72, 0, 0x00FF0000, 0});
 	mlx_put_image_to_window(s_fdf.mlx_data.mlx_ptr, s_fdf.mlx_data.win_ptr, s_fdf.mlx_data.s_img.img, 0, 0);

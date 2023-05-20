@@ -6,13 +6,13 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:39:17 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 16:41:33 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:15:04 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color)
+void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 {
 	char    *pixel;
 	int		i;
@@ -27,10 +27,10 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color)
 	{
 		/* big endian, MSB is the leftmost bit */
 		if (s_image->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
+			*pixel++ = (colour >> i) & 0xFF;
 		/* little endian, LSB is the leftmost bit */
 		else
-			*pixel++ = (color >> (s_image->bpp - 8 - i)) & 0xFF;
+			*pixel++ = (colour >> (s_image->bpp - 8 - i)) & 0xFF;
 		i -= 8;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 16:47:30 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:15:13 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct	s_fdf {
 
 
 /*	DRAWING FUNCTIONS	*/
-void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color);
+void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour);
 // int		ft_draw_rectangle(t_img_data *s_img, t_rect s_rect);
 // int		ft_draw_bordure(t_img_data *s_img, t_rect s_rect);
 // void	ft_draw_circle(t_img_data *s_img, int xc, int yc, int x, int y);
@@ -114,6 +114,6 @@ void	ft_draw_line(t_img_data *s_img, t_point start, t_point end);
 void	ft_parse_map(t_fdf *s_fdf);
 
 /*	ISOMETRICS FUNCTIONS	*/
-void	ft_print_map(t_map_data *map_data, t_img_data *s_img, int interspace, int height);
+void	ft_print_map(t_fdf *s_fdf);
 
 #endif
