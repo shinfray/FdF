@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/19 14:37:44 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 11:01:46 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_set_hooks(t_data *s_window);
 int	main(int argc, char **argv)
 {
 	t_data		s_window;
-	t_map_data	map_data;
+	t_map_data	s_map_data;
 
 	if (argc != 2)
 	{
@@ -27,19 +27,19 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	
-	ft_parse_map(argv[1], &map_data);
+	ft_parse_map(argv[1], &s_map_data);
 
 
 	// int	i = 0;
-	// while (map_data[i]->last_point != 1)
+	// while (s_map_data.map[i].last_point != 1)
 	// {
-	// 	printf("\ncase: %i x=%i y=%i z=%i\n", i, map_data[i].x, map_data[i].y, map_data[i].z);
+	// 	printf("\ncase: %i x=%i y=%i z=%i\n", i, s_map_data.map[i].x, s_map_data.map[i].y, s_map_data.map[i].z);
 	// 	++i;
 	// }
-	// printf("\ncase: %i x=%i y=%i z=%i\n", i, map_data.x, map_data.y, map_data.z);
+	// printf("\ncase: %i x=%i y=%i z=%i\n", i, s_map_data.map[i].x, s_map_data.map[i].y, s_map_data.map[i].z);
 
 	ft_initialize(&s_window, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
-	ft_print_map(&map_data, &s_window.s_img, 40, 3);
+	ft_print_map(&s_map_data, &s_window.s_img, 20, 3);
 	//ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0xFFFFFF});
 	//ft_draw_line(&s_window.s_img, (t_point){483, 46, 0, 0x00FF0000, 0}, (t_point){12, 72, 0, 0x00FF0000, 0});
 	mlx_put_image_to_window(s_window.mlx_ptr, s_window.win_ptr, s_window.s_img.img, 0, 0);
