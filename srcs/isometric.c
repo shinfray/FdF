@@ -45,7 +45,7 @@ void	ft_print_map(t_fdf *s_fdf)
 			ft_draw_line(&(s_fdf->mlx_data.s_img), ft_isometric((s_fdf->map_data.map)[i], &(s_fdf->s_isometric_data)), ft_isometric((s_fdf->map_data.map)[i + s_fdf->map_data.total_column], &(s_fdf->s_isometric_data)));
 			i += s_fdf->map_data.total_column;
 		}
-		i -= (s_fdf->map_data.total_row - 1) * s_fdf->map_data.total_column + 1;
+		i = s_fdf->map_data.total_column - column;
 		row = s_fdf->map_data.total_row;
 	}
 }
