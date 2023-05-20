@@ -13,6 +13,7 @@
 #include "fdf.h"
 
 t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data);
+static double	ft_rad(int degree);
 
 /* à protéger quand il n'y a qu'un point, qu'une ligne, ... */
 void	ft_print_map(t_fdf *s_fdf)
@@ -49,17 +50,22 @@ void	ft_print_map(t_fdf *s_fdf)
 	}
 }
 
+static double	ft_rad(int degree)
+{
+	return (degree * (M_PI / 180.0));
+}
+
 t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 {
 	// point->x = point->x + cos(angle) * point->z - cos(angle) * point->y;
 	// point->y = -(point->y) * sin(angle) - point->z * sin(angle);
-
+	 
 	int previous_x;
     int previous_y;
 
     previous_x = point.x * s_isometric_data->interspace;
     previous_y = point.y * s_isometric_data->interspace;
-    point.x = (previous_x - previous_y) * cos(s_isometric_data->angle);
-    point.y = -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(s_isometric_data->angle);
+    point.x = s_isometric_data->origin_x + (previous_x - previous_y) * cos(ft_rad(s_isometric_data->angle));
+    point.y = s_isometric_data->origin_y + -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(ft_rad(s_isometric_data->angle));
 	return (point);
 }

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:39:17 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 17:15:04 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:23:54 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 	char    *pixel;
 	int		i;
 
-	x += 200;
-	y += 200;
 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
 		return ;
 	i = s_image->bpp - 8;
