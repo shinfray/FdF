@@ -65,7 +65,7 @@ t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 
     previous_x = point.x * s_isometric_data->interspace;
     previous_y = point.y * s_isometric_data->interspace;
-    point.x = s_isometric_data->origin_x + (previous_x - previous_y) * cos(ft_rad(s_isometric_data->angle));
-    point.y = s_isometric_data->origin_y + -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(ft_rad(s_isometric_data->angle));
+    point.x = s_isometric_data->origin_x + s_isometric_data->move_x + (previous_x - previous_y) * cos(ft_rad(s_isometric_data->angle));
+    point.y = s_isometric_data->origin_y + s_isometric_data->move_y + -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(ft_rad(s_isometric_data->angle));
 	return (point);
 }

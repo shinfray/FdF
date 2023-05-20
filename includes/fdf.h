@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 17:18:56 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 18:06:22 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct	s_isometric_data {
 	double	angle;
 	int		interspace;
 	int		height;
+	int		move_x;
+	int		move_y;
 }				t_isometric_data;
 
 typedef struct	s_fdf {
@@ -107,6 +109,7 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour);
 int	ft_mouse_click(int button, int x, int y, t_mlx_data *param);
 int	ft_key_pressed(int keycode, t_mlx_data *param);
 int	ft_close(t_mlx_data *param);
+int	ft_hold_key(t_mlx_data *param);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:39:24 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 11:26:08 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 18:16:30 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ int	ft_close(t_mlx_data *param)
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
 	free(param->mlx_ptr);
 	exit(EXIT_SUCCESS);
+}
+
+int	ft_hold_key(t_mlx_data *param)
+{
+	(void)param;
+	
+	return (0);
 }
