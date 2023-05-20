@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 11:14:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 12:19:32 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ typedef struct	s_img_data {
 	int		endian;
 }				t_img_data;
 
-typedef struct	s_data {
+typedef struct	s_mlx_data {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img_data	s_img;
-}				t_data;
+}				t_mlx_data;
 
 typedef struct	s_rect {
 	int	x;
@@ -68,10 +68,26 @@ typedef struct s_point {
 }				t_point;
 
 typedef struct	s_map_data {
-	t_point	*map;
-	int		total_row;
-	int		total_column;
+	t_point		*map;
+	int			total_row;
+	int			total_column;
+	ssize_t		total_size;
+	int			space;
+	int			height;
 }				t_map_data;
+
+typedef struct	s_file_data {
+	int		fd;
+	char	*path;
+}				t_file_data;
+
+
+typedef struct	s_fdf {
+	t_mlx_data	mlx_data;
+	t_map_data	map_data;
+	t_file_data	s_file_data;
+}				t_fdf;
+
 
 /*	DRAWING FUNCTIONS	*/
 void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color);
@@ -81,9 +97,9 @@ void	ft_draw_circle(t_img_data *s_img, int xc, int yc, int x, int y);
 void	ft_circle_bres(t_img_data *s_img, int xc, int yc, int r);
 
 /*	EVENTS FUNCTIONS	*/
-int	ft_mouse_click(int button, int x, int y, t_data *param);
-int	ft_key_pressed(int keycode, t_data *param);
-int	ft_close(t_data *param);
+int	ft_mouse_click(int button, int x, int y, t_mlx_data *param);
+int	ft_key_pressed(int keycode, t_mlx_data *param);
+int	ft_close(t_mlx_data *param);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/

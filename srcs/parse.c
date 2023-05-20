@@ -20,7 +20,6 @@ static void	ft_print_error_and_exit(void);
 void	ft_parse_map(char *file, t_map_data *map_data)
 {
 	int		fd;
-	ssize_t	array_size;
 	char	**row;
 	int		x;
 	int		y;
@@ -30,11 +29,11 @@ void	ft_parse_map(char *file, t_map_data *map_data)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_print_error_and_exit();
-	array_size = ft_map_size(fd, map_data);
+	map_data->total_size = ft_map_size(fd, map_data);
 	close(fd);
-	if (array_size == -1)
+	if (map_data->total_size == -1)
 		ft_print_error_and_exit();
-	map_data->map = ft_calloc(array_size, sizeof(*(map_data->map)));
+	map_data->map = ft_calloc(map_data->total_size, sizeof(*(map_data->map)));
 	if (map_data->map == NULL)
 		ft_print_error_and_exit();
 	fd = open(file, O_RDONLY);
