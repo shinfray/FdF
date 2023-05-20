@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 22:49:14 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 23:58:52 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour);
 // void	ft_circle_bres(t_img_data *s_img, int xc, int yc, int r);
 
 /*	EVENTS FUNCTIONS	*/
-int	ft_mouse_click(int button, int x, int y, t_mlx_data *param);
-int	ft_key_pressed(int keycode, t_mlx_data *param);
-int	ft_close(t_mlx_data *param);
+int	ft_mouse_click(int button, int x, int y, t_fdf *s_fdf);
+int	ft_key_pressed(int keycode, t_fdf *s_fdf);
+int	ft_close(t_fdf *s_fdf);
 int	ft_hold_key(int keycode, t_fdf *s_fdf);
 
 
