@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 18:37:22 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:49:14 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ void	ft_parse_map(t_fdf *s_fdf);
 
 /*	ISOMETRICS FUNCTIONS	*/
 void	ft_print_map(t_fdf *s_fdf);
+double	ft_rad(int degree);
 
 #endif

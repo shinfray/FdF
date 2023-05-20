@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 18:07:05 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:49:25 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_initialize_fdf_data(t_fdf *s_fdf, char *path)
 	s_fdf->s_file_data.path = path;
 	s_fdf->s_isometric_data.interspace = 10;
 	s_fdf->s_isometric_data.height = 3;
-	s_fdf->s_isometric_data.angle = 30;
+	s_fdf->s_isometric_data.angle = ft_rad(30);
 	s_fdf->s_isometric_data.origin_x = 200;
 	s_fdf->s_isometric_data.origin_y = 200;
 	s_fdf->s_isometric_data.move_x = 0;

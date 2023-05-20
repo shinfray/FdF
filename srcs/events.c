@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:39:24 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 18:36:15 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:55:34 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ int	ft_hold_key(int keycode, t_fdf *s_fdf)
 		return (ft_close(&(s_fdf->mlx_data)));
 	ft_printf("=====KEY hold=====\nkeycode: %d\n", keycode);
 	if (keycode == UP_KEY)
-		s_fdf->s_isometric_data.move_y -= 1;
+		s_fdf->s_isometric_data.move_y -= 10;
 	if (keycode == DOWN_KEY)
-		s_fdf->s_isometric_data.move_y += 1;
+		s_fdf->s_isometric_data.move_y += 10;
 	if (keycode == LEFT_KEY)
-		s_fdf->s_isometric_data.move_x -= 1;
+		s_fdf->s_isometric_data.move_x -= 10;
 	if (keycode == RIGHT_KEY)
-		s_fdf->s_isometric_data.move_y += 1;
+		s_fdf->s_isometric_data.move_x += 10;
 	ft_print_map(s_fdf);
+	mlx_put_image_to_window(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, s_fdf->mlx_data.s_img.img, 0, 0);
 
 	return (0);
 }
