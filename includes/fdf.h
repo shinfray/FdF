@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 18:06:22 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 18:37:22 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 #define WINDOW_WIDTH 1080
 #define WINDOW_HEIGHT 720
 #define	ESCAPE_KEY 53
+#define	UP_KEY 126
+#define	DOWN_KEY 125
+#define	LEFT_KEY 123
+#define	RIGHT_KEY 124
 
 enum	e_events{
 	ON_KEYDOWN = 2,
@@ -109,7 +113,7 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour);
 int	ft_mouse_click(int button, int x, int y, t_mlx_data *param);
 int	ft_key_pressed(int keycode, t_mlx_data *param);
 int	ft_close(t_mlx_data *param);
-int	ft_hold_key(t_mlx_data *param);
+int	ft_hold_key(int keycode, t_fdf *s_fdf);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/
