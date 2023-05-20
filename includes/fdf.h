@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/18 18:39:20 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 11:14:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,12 @@ typedef struct	s_rect {
 	int	color;
 }				t_rect;
 
-typedef struct s_coordinates {
-	int	x1;
-	int	y1;
-	int	x2;
-	int	y2;
-	int	color;
-}				t_coordinates;
-
 typedef struct s_point {
 	int		x;
 	int		y;
 	int		z;
 	int		color;
-	int		last_point;
 }				t_point;
-
 
 typedef struct	s_map_data {
 	t_point	*map;

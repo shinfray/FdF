@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 11:01:46 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 11:14:30 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ int	main(int argc, char **argv)
 	}
 	
 	ft_parse_map(argv[1], &s_map_data);
-
-
-	// int	i = 0;
-	// while (s_map_data.map[i].last_point != 1)
-	// {
-	// 	printf("\ncase: %i x=%i y=%i z=%i\n", i, s_map_data.map[i].x, s_map_data.map[i].y, s_map_data.map[i].z);
-	// 	++i;
-	// }
-	// printf("\ncase: %i x=%i y=%i z=%i\n", i, s_map_data.map[i].x, s_map_data.map[i].y, s_map_data.map[i].z);
 
 	ft_initialize(&s_window, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
 	ft_print_map(&s_map_data, &s_window.s_img, 20, 3);
