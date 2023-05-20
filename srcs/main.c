@@ -6,14 +6,14 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 12:20:52 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:50:42 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static void	ft_initialize_fdf_data(t_fdf *s_fdf, char *path);
-static void	ft_initialize_window(t_mlx_data *s_window, char *name);
+static void	ft_initialize_window(t_mlx_data *s_window);
 static void	ft_set_hooks(t_mlx_data *s_window);
 
 int	main(int argc, char **argv)
@@ -28,10 +28,10 @@ int	main(int argc, char **argv)
 	}
 	ft_initialize_fdf_data(&s_fdf, argv[1]);
 	
-	ft_parse_map(argv[1], &(s_fdf.map_data));
+	ft_parse_map(&s_fdf);
 
-	ft_initialize_window(&(s_fdf.mlx_data), "FdF");
-	ft_print_map(&(s_fdf.map_data), &(s_fdf.mlx_data.s_img), s_fdf.map_data.space, s_fdf.map_data.height);
+	ft_initialize_window(&(s_fdf.mlx_data));
+	ft_print_map(&(s_fdf.map_data), &(s_fdf.mlx_data.s_img), s_fdf.s_isometric_data.interspace, s_fdf.s_isometric_data.height);
 	//ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0xFFFFFF});
 	//ft_draw_line(&s_window.s_img, (t_point){483, 46, 0, 0x00FF0000, 0}, (t_point){12, 72, 0, 0x00FF0000, 0});
 	mlx_put_image_to_window(s_fdf.mlx_data.mlx_ptr, s_fdf.mlx_data.win_ptr, s_fdf.mlx_data.s_img.img, 0, 0);
@@ -44,16 +44,17 @@ static void	ft_initialize_fdf_data(t_fdf *s_fdf, char *path)
 {
 	s_fdf->s_file_data.fd = -1;
 	s_fdf->s_file_data.path = path;
-	s_fdf->map_data.space = 10;
-	s_fdf->map_data.height = 3;
+	s_fdf->s_isometric_data.interspace = 10;
+	s_fdf->s_isometric_data.height = 3;
+	s_fdf->s_isometric_data.angle = 0.523599;
 }
 
-static void	ft_initialize_window(t_mlx_data *s_window, char *name)
+static void	ft_initialize_window(t_mlx_data *s_window)
 {
 	s_window->mlx_ptr = mlx_init();
 	if (s_window->mlx_ptr == NULL)
 		exit(EXIT_FAILURE);
-	s_window->win_ptr = mlx_new_window(s_window->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, name);
+	s_window->win_ptr = mlx_new_window(s_window->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_NAME);
 	if (s_window->win_ptr == NULL)
 	{
 		free(s_window->win_ptr);

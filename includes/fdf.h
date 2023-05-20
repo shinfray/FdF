@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 12:19:32 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:47:30 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
+#define	WINDOW_NAME "FdF"
 #define WINDOW_WIDTH 1080
 #define WINDOW_HEIGHT 720
 #define	ESCAPE_KEY 53
@@ -52,19 +53,19 @@ typedef struct	s_mlx_data {
 	t_img_data	s_img;
 }				t_mlx_data;
 
-typedef struct	s_rect {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
-}				t_rect;
+// typedef struct	s_rect {
+// 	int	x;
+// 	int	y;
+// 	int	width;
+// 	int	height;
+// 	int	color;
+// }				t_rect;
 
 typedef struct s_point {
 	int		x;
 	int		y;
 	int		z;
-	int		color;
+	int		colour;
 }				t_point;
 
 typedef struct	s_map_data {
@@ -72,8 +73,6 @@ typedef struct	s_map_data {
 	int			total_row;
 	int			total_column;
 	ssize_t		total_size;
-	int			space;
-	int			height;
 }				t_map_data;
 
 typedef struct	s_file_data {
@@ -81,20 +80,26 @@ typedef struct	s_file_data {
 	char	*path;
 }				t_file_data;
 
+typedef struct	s_isometric_data {
+	double	angle;
+	int		interspace;
+	int		height;
+}				t_isometric_data;
 
 typedef struct	s_fdf {
-	t_mlx_data	mlx_data;
-	t_map_data	map_data;
-	t_file_data	s_file_data;
+	t_mlx_data			mlx_data;
+	t_map_data			map_data;
+	t_file_data			s_file_data;
+	t_isometric_data	s_isometric_data;
 }				t_fdf;
 
 
 /*	DRAWING FUNCTIONS	*/
 void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int color);
-int		ft_draw_rectangle(t_img_data *s_img, t_rect s_rect);
-int		ft_draw_bordure(t_img_data *s_img, t_rect s_rect);
-void	ft_draw_circle(t_img_data *s_img, int xc, int yc, int x, int y);
-void	ft_circle_bres(t_img_data *s_img, int xc, int yc, int r);
+// int		ft_draw_rectangle(t_img_data *s_img, t_rect s_rect);
+// int		ft_draw_bordure(t_img_data *s_img, t_rect s_rect);
+// void	ft_draw_circle(t_img_data *s_img, int xc, int yc, int x, int y);
+// void	ft_circle_bres(t_img_data *s_img, int xc, int yc, int r);
 
 /*	EVENTS FUNCTIONS	*/
 int	ft_mouse_click(int button, int x, int y, t_mlx_data *param);
@@ -106,7 +111,7 @@ int	ft_close(t_mlx_data *param);
 void	ft_draw_line(t_img_data *s_img, t_point start, t_point end);
 
 /*	PARSE FUNCTIONS	*/
-void	ft_parse_map(char *file, t_map_data *map_data);
+void	ft_parse_map(t_fdf *s_fdf);
 
 /*	ISOMETRICS FUNCTIONS	*/
 void	ft_print_map(t_map_data *map_data, t_img_data *s_img, int interspace, int height);
