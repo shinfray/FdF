@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 23:58:52 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 01:30:24 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include "libft.h"
 # include "ft_printf.h"
@@ -32,8 +33,12 @@
 #define	DOWN_KEY 125
 #define	LEFT_KEY 123
 #define	RIGHT_KEY 124
+#define N_KEY 45
+#define R_KEY 15
+#define H_KEY 4
+#define Z_KEY 6
 
-enum	e_events{
+enum	e_events {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -41,6 +46,13 @@ enum	e_events{
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
+};
+
+enum	e_modes {
+	NORMAL_MODE,
+	HEIGHT_MODE,
+	ZOOM_MODE,
+	ROTATE_MODE,
 };
 
 typedef struct	s_img_data {
@@ -99,6 +111,7 @@ typedef struct	s_fdf {
 	t_map_data			map_data;
 	t_file_data			s_file_data;
 	t_isometric_data	s_isometric_data;
+	int					mode;
 }				t_fdf;
 
 
@@ -114,6 +127,9 @@ int	ft_mouse_click(int button, int x, int y, t_fdf *s_fdf);
 int	ft_key_pressed(int keycode, t_fdf *s_fdf);
 int	ft_close(t_fdf *s_fdf);
 int	ft_hold_key(int keycode, t_fdf *s_fdf);
+void	ft_move(t_fdf *s_fdf, int keycode);
+void	ft_height(t_fdf *s_fdf, int keycode);
+void	ft_zoom(t_fdf *s_fdf, int keycode);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/

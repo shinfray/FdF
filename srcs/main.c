@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 00:08:36 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 01:05:05 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	ft_initialize_fdf_data(t_fdf *s_fdf, char *path)
 	s_fdf->s_isometric_data.move_x = 0;
 	s_fdf->s_isometric_data.move_y = 0;
 	s_fdf->map_data.map = NULL;
+	s_fdf->mode = NORMAL_MODE;
 }
 
 static void	ft_initialize_window(t_mlx_data *s_window)
