@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 01:05:05 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:29:16 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	//ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0xFFFFFF});
 	//ft_draw_line(&s_window.s_img, (t_point){483, 46, 0, 0x00FF0000, 0}, (t_point){12, 72, 0, 0x00FF0000, 0});
 	mlx_put_image_to_window(s_fdf.mlx_data.mlx_ptr, s_fdf.mlx_data.win_ptr, s_fdf.mlx_data.s_img.img, 0, 0);
+	ft_print_help(&s_fdf);
 	ft_set_hooks(&s_fdf);
 	mlx_loop(s_fdf.mlx_data.mlx_ptr);
 	return (0);
@@ -76,4 +77,13 @@ static void	ft_set_hooks(t_fdf *s_fdf)
 	mlx_key_hook(s_fdf->mlx_data.win_ptr, &ft_key_pressed, s_fdf);
 	mlx_hook(s_fdf->mlx_data.win_ptr, ON_DESTROY, 0, &ft_close, s_fdf);
 	mlx_hook(s_fdf->mlx_data.win_ptr, ON_KEYDOWN, 0, &ft_hold_key, s_fdf);
+}
+
+void	ft_print_help(t_fdf *s_fdf)
+{
+	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, 10, 10, 0xFFFFFF, "N: NORMAL MODE");
+	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, 10, 30, 0xFFFFFF, "Z: NORMAL MODE");
+	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, 10, 50, 0xFFFFFF, "R: ROTATE MODE");
+	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, 10, 70, 0xFFFFFF, "H: HEIGHT MODE");
+	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, 10, 90, 0xFFFFFF, "USE ARROW KEYS");
 }

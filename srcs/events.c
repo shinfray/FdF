@@ -21,11 +21,12 @@ int	ft_mouse_click(int button, int x, int y, t_fdf *s_fdf)
 
 int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 {
+	ft_printf("=====key===== = %d\n", keycode);
 	if (keycode == ESCAPE_KEY)
 		return (ft_close(s_fdf));
-	if (keycode == N_KEY)
+	else if (keycode == N_KEY)
 		s_fdf->mode = NORMAL_MODE;
-	if (keycode == R_KEY)
+	else if (keycode == R_KEY)
 		s_fdf->mode = ROTATE_MODE;
 	else if (keycode == Z_KEY)
 		s_fdf->mode = ZOOM_MODE;
@@ -60,6 +61,7 @@ int	ft_hold_key(int keycode, t_fdf *s_fdf)
 	(*ft_mode[s_fdf->mode])(s_fdf, keycode);
 	ft_print_map(s_fdf);
 	mlx_put_image_to_window(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, s_fdf->mlx_data.s_img.img, 0, 0);
+	ft_print_help(s_fdf);
 	return (0);
 }
 
