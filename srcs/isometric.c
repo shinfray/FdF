@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/05 17:43:47 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/06 10:52:56by shinfray         ###   ########.fr       */
+/*   Created: 2023/05/21 03:33:08 by shinfray          #+#    #+#             */
+/*   Updated: 2023/05/21 03:35:03 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ double	ft_rad(int degree)
 
 t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 {
-	int previous_x;
-    int previous_y;
+	int	previous_x;
+	int	previous_y;
 
-    previous_x = point.x * s_isometric_data->interspace;
-    previous_y = point.y * s_isometric_data->interspace;
-    point.x = s_isometric_data->origin_x + s_isometric_data->move_x + (previous_x - previous_y) * cos(s_isometric_data->angle);
-    point.y = s_isometric_data->origin_y + s_isometric_data->move_y + -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(s_isometric_data->angle);
+	previous_x = point.x * s_isometric_data->interspace;
+	previous_y = point.y * s_isometric_data->interspace;
+	point.x = s_isometric_data->origin_x + s_isometric_data->move_x + (previous_x - previous_y) * cos(s_isometric_data->angle);
+	point.y = s_isometric_data->origin_y + s_isometric_data->move_y + -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(s_isometric_data->angle);
 	return (point);
 }

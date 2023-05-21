@@ -6,14 +6,14 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 16:33:13 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:40:24 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void 	draw_line_sharp(t_img_data *s_img, t_point start, t_point end);
-static void 	draw_line_obtuse(t_img_data *s_img, t_point start, t_point end);
+static void		draw_line_sharp(t_img_data *s_img, t_point start, t_point end);
+static void		draw_line_obtuse(t_img_data *s_img, t_point start, t_point end);
 unsigned int	ft_abs(int number);
 
 void	ft_draw_line(t_img_data *s_img, t_point start, t_point end)
@@ -33,7 +33,7 @@ unsigned int	ft_abs(int number)
 	return (number);
 }
 
-static void 	draw_line_sharp(t_img_data *s_img, t_point start, t_point end)
+static void	draw_line_sharp(t_img_data *s_img, t_point start, t_point end)
 {
 	int			e = ft_abs(end.x - start.x);
 	const int	dx = 2 * e;
@@ -61,7 +61,7 @@ static void 	draw_line_sharp(t_img_data *s_img, t_point start, t_point end)
 	ft_pixel_put_image(s_img, start.x, start.y, start.colour);
 }
 
-static void 	draw_line_obtuse(t_img_data *s_img, t_point start, t_point end)
+static void	draw_line_obtuse(t_img_data *s_img, t_point start, t_point end)
 {
 	int			e = ft_abs(end.y - start.y);
 	const int	dx = 2 * ft_abs(end.x - start.x);
@@ -88,4 +88,3 @@ static void 	draw_line_obtuse(t_img_data *s_img, t_point start, t_point end)
 	}
 	ft_pixel_put_image(s_img, start.x, start.y, start.colour);
 }
-

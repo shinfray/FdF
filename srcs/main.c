@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:29:16 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:44:37 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	ft_initialize_fdf_data(&s_fdf, argv[1]);
-	
 	ft_parse_map(&s_fdf);
-
 	ft_initialize_window(&(s_fdf.mlx_data));
 	ft_print_map(&s_fdf);
 	//ft_draw_rectangle(&s_window.s_img, (t_rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0xFFFFFF});
@@ -73,7 +71,7 @@ static void	ft_initialize_window(t_mlx_data *s_window)
 
 static void	ft_set_hooks(t_fdf *s_fdf)
 {
-	mlx_mouse_hook(s_fdf->mlx_data.win_ptr, &ft_mouse_click, s_fdf);
+	//mlx_mouse_hook(s_fdf->mlx_data.win_ptr, &ft_mouse_click, s_fdf);
 	mlx_key_hook(s_fdf->mlx_data.win_ptr, &ft_key_pressed, s_fdf);
 	mlx_hook(s_fdf->mlx_data.win_ptr, ON_DESTROY, 0, &ft_close, s_fdf);
 	mlx_hook(s_fdf->mlx_data.win_ptr, ON_KEYDOWN, 0, &ft_hold_key, s_fdf);

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:39:17 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/20 17:23:54 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:38:20 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 {
-	char    *pixel;
+	char	*pixel;
 	int		i;
 
 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
 		return ;
 	i = s_image->bpp - 8;
-    pixel = s_image->addr + (y * s_image->line_len + x * (s_image->bpp / 8));
+	pixel = s_image->addr + (y * s_image->line_len + x * (s_image->bpp / 8));
 	while (i >= 0)
 	{
 		/* big endian, MSB is the leftmost bit */
@@ -32,12 +32,12 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 		i -= 8;
 	}
 }
-
+//
 // int	ft_draw_rectangle(t_img_data *s_img, t_rect s_rect)
 // {
 // 	int	i;
 // 	int	j;
-
+//
 // 	i = s_rect.y;
 // 	while (i < s_rect.y + s_rect.height)
 // 	{
@@ -48,12 +48,12 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 // 	}
 // 	return (0);
 // }
-
+//
 // int	ft_draw_bordure(t_img_data *s_img, t_rect s_rect)
 // {
 // 	int	i;
 // 	int	j;
-
+//
 // 	i = s_rect.y;
 // 	j = s_rect.x;
 // 	while (j < s_rect.x + s_rect.width)
@@ -70,9 +70,9 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 // 		ft_pixel_put_image(s_img, j++, i, s_rect.color);
 // 	return (0);
 // }
-
+//
 // #define RED 0x00A576B7
-
+//
 // void ft_draw_circle(t_img_data *s_img, int xc, int yc, int x, int y)
 // {
 //     ft_pixel_put_image(s_img, xc+x, yc+y, RED);
@@ -84,7 +84,7 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 //     ft_pixel_put_image(s_img, xc+y, yc-x, RED);
 //     ft_pixel_put_image(s_img, xc-y, yc-x, RED);
 // }
- 
+//
 // // Function for circle-generation
 // // using Bresenham's algorithm
 // void ft_circle_bres(t_img_data *s_img, int xc, int yc, int r)
@@ -96,9 +96,9 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour)
 //     {
 //         // for each pixel we will
 //         // draw all eight pixels
-         
+//        
 //         x++;
- 
+// 
 //         // check for decision parameter
 //         // and correspondingly
 //         // update d, x, y

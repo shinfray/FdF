@@ -5,23 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 19:39:24 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 01:23:37by shinfray         ###   ########.fr       */
+/*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
+/*   Updated: 2023/05/21 03:45:05 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*
 int	ft_mouse_click(int button, int x, int y, t_fdf *s_fdf)
 {
 	(void)s_fdf;
 	ft_printf("=====MOUSE=====\nbutton number: %d\nx: %d\ny: %d\n", button, x, y);
 	return (0);
 }
+*/
 
 int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 {
-	ft_printf("=====key===== = %d\n", keycode);
 	if (keycode == ESCAPE_KEY)
 		return (ft_close(s_fdf));
 	else if (keycode == N_KEY)
