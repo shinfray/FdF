@@ -46,24 +46,19 @@ int	ft_close(t_fdf *s_fdf)
 
 int	ft_hold_key(int keycode, t_fdf *s_fdf)
 {
-	void		(*ft_mode[3])(t_fdf *, int);
-	void		*s_new_image;
-	void		*backup;
+	void		(*ft_mode[4])(t_fdf *, int);
 
 	if (keycode != UP_KEY && keycode != DOWN_KEY && keycode != LEFT_KEY && keycode != RIGHT_KEY)
 		return (0);
-	backup = s_fdf->mlx_data.s_img.img;
-
-	s_new_image = mlx_new_image(s_fdf->mlx_data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	s_fdf->mlx_data.s_img.addr = mlx_get_data_addr(s_new_image, &(s_fdf->mlx_data.s_img.bpp), &(s_fdf->mlx_data.s_img.line_len), &(s_fdf->mlx_data.s_img.endian));
-	s_fdf->mlx_data.s_img.img = s_new_image;
-
+	mlx_destroy_image(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.s_img.img);
+	s_fdf->mlx_data.s_img.img = mlx_new_image(s_fdf->mlx_data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	s_fdf->mlx_data.s_img.addr = mlx_get_data_addr(s_fdf->mlx_data.s_img.img, &(s_fdf->mlx_data.s_img.bpp), &(s_fdf->mlx_data.s_img.line_len), &(s_fdf->mlx_data.s_img.endian));
 	(ft_mode[0]) = &ft_move;
 	(ft_mode[1]) = &ft_height;
 	(ft_mode[2]) = &ft_zoom;
+	(ft_mode[3]) = &ft_rotate;
 	(*ft_mode[s_fdf->mode])(s_fdf, keycode);
 	ft_print_map(s_fdf);
-	mlx_destroy_image(s_fdf->mlx_data.mlx_ptr, backup);
 	mlx_put_image_to_window(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, s_fdf->mlx_data.s_img.img, 0, 0);
 	return (0);
 }
@@ -91,7 +86,19 @@ void	ft_height(t_fdf *s_fdf, int keycode)
 void	ft_zoom(t_fdf *s_fdf, int keycode)
 {
 	if (keycode == UP_KEY)
-		s_fdf->s_isometric_data.interspace += 2;
+		s_fdf->s_isometric_data.interspace += 1;
 	else if (keycode == DOWN_KEY)
-		s_fdf->s_isometric_data.interspace -= 2;
+		s_fdf->s_isometric_data.interspace -= 1;
+}
+
+void	ft_rotate(t_fdf *s_fdf, int keycode)
+{
+	if (keycode == UP_KEY)
+		s_fdf->s_isometric_data.angle -= ft_rad(1);
+	else if (keycode == DOWN_KEY)
+		s_fdf->s_isometric_data.angle += ft_rad(1);
+	// else if (keycode == LEFT_KEY)
+	// 	s_fdf->s_isometric_data.move_x -= 10;
+	// else if (keycode == RIGHT_KEY)
+	// 	s_fdf->s_isometric_data.move_x += 10;
 }

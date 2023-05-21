@@ -57,9 +57,6 @@ double	ft_rad(int degree)
 
 t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 {
-	// point->x = point->x + cos(angle) * point->z - cos(angle) * point->y;
-	// point->y = -(point->y) * sin(angle) - point->z * sin(angle);
-	 
 	int previous_x;
     int previous_y;
 

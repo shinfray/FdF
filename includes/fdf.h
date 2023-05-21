@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 01:30:24 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 02:36:39 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int	ft_hold_key(int keycode, t_fdf *s_fdf);
 void	ft_move(t_fdf *s_fdf, int keycode);
 void	ft_height(t_fdf *s_fdf, int keycode);
 void	ft_zoom(t_fdf *s_fdf, int keycode);
+void	ft_rotate(t_fdf *s_fdf, int keycode);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/
