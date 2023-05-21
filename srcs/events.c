@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:45:05 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:49:43 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,23 @@ int	ft_hold_key(int keycode, t_fdf *s_fdf)
 {
 	void		(*ft_mode[4])(t_fdf *, int);
 
-	if (keycode != UP_KEY && keycode != DOWN_KEY && keycode != LEFT_KEY && keycode != RIGHT_KEY)
+	if (keycode != UP_KEY && keycode != DOWN_KEY \
+			&& keycode != LEFT_KEY && keycode != RIGHT_KEY)
 		return (0);
 	mlx_destroy_image(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.s_img.img);
-	s_fdf->mlx_data.s_img.img = mlx_new_image(s_fdf->mlx_data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	s_fdf->mlx_data.s_img.addr = mlx_get_data_addr(s_fdf->mlx_data.s_img.img, &(s_fdf->mlx_data.s_img.bpp), &(s_fdf->mlx_data.s_img.line_len), &(s_fdf->mlx_data.s_img.endian));
+	s_fdf->mlx_data.s_img.img = mlx_new_image(s_fdf->mlx_data.mlx_ptr, \
+			WINDOW_WIDTH, WINDOW_HEIGHT);
+	s_fdf->mlx_data.s_img.addr = mlx_get_data_addr(s_fdf->mlx_data.s_img.img, \
+			&(s_fdf->mlx_data.s_img.bpp), &(s_fdf->mlx_data.s_img.line_len), \
+			&(s_fdf->mlx_data.s_img.endian));
 	(ft_mode[0]) = &ft_move;
 	(ft_mode[1]) = &ft_height;
 	(ft_mode[2]) = &ft_zoom;
 	(ft_mode[3]) = &ft_rotate;
 	(*ft_mode[s_fdf->mode])(s_fdf, keycode);
 	ft_print_map(s_fdf);
-	mlx_put_image_to_window(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, s_fdf->mlx_data.s_img.img, 0, 0);
+	mlx_put_image_to_window(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
+			s_fdf->mlx_data.s_img.img, 0, 0);
 	ft_print_help(s_fdf);
 	return (0);
 }

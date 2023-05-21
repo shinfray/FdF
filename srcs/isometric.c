@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:33:08 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:35:03 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:52:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ void	ft_print_map(t_fdf *s_fdf)
 	{
 		while (column-- > 1)
 		{
-			ft_draw_line(&(s_fdf->mlx_data.s_img), ft_isometric((s_fdf->map_data.map)[i], &(s_fdf->s_isometric_data)), ft_isometric((s_fdf->map_data.map)[i + 1], &(s_fdf->s_isometric_data)));
+			ft_draw_line(&(s_fdf->mlx_data.s_img), \
+					ft_isometric((s_fdf->map_data.map)[i], \
+					&(s_fdf->s_isometric_data)), \
+					ft_isometric((s_fdf->map_data.map)[i + 1], \
+					&(s_fdf->s_isometric_data)));
 			++i;
 		}
 		++i;
@@ -42,7 +46,11 @@ void	ft_print_map(t_fdf *s_fdf)
 	{
 		while (row-- > 1)
 		{
-			ft_draw_line(&(s_fdf->mlx_data.s_img), ft_isometric((s_fdf->map_data.map)[i], &(s_fdf->s_isometric_data)), ft_isometric((s_fdf->map_data.map)[i + s_fdf->map_data.total_column], &(s_fdf->s_isometric_data)));
+			ft_draw_line(&(s_fdf->mlx_data.s_img), \
+				ft_isometric((s_fdf->map_data.map)[i], \
+				&(s_fdf->s_isometric_data)), \
+				ft_isometric((s_fdf->map_data.map)[i + s_fdf->map_data.total_column], \
+				&(s_fdf->s_isometric_data)));
 			i += s_fdf->map_data.total_column;
 		}
 		i = s_fdf->map_data.total_column - column;
@@ -62,7 +70,10 @@ t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 
 	previous_x = point.x * s_isometric_data->interspace;
 	previous_y = point.y * s_isometric_data->interspace;
-	point.x = s_isometric_data->origin_x + s_isometric_data->move_x + (previous_x - previous_y) * cos(s_isometric_data->angle);
-	point.y = s_isometric_data->origin_y + s_isometric_data->move_y + -(point.z) * s_isometric_data->height + (previous_x + previous_y) * sin(s_isometric_data->angle);
+	point.x = s_isometric_data->origin_x + s_isometric_data->move_x + \
+			  (previous_x - previous_y) * cos(s_isometric_data->angle);
+	point.y = s_isometric_data->origin_y + s_isometric_data->move_y + \
+			  -(point.z) * s_isometric_data->height + \
+			  (previous_x + previous_y) * sin(s_isometric_data->angle);
 	return (point);
 }

@@ -6,16 +6,16 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:42:22 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:54:32 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static ssize_t	ft_map_size(t_fdf *s_fdf);
-static int	ft_array_of_string_len(const char **array);
-static char	*ft_free_row(char **row);
-static void	ft_print_error_and_exit(void);
+static int		ft_array_of_string_len(const char **array);
+static char		*ft_free_row(char **row);
+static void		ft_print_error_and_exit(void);
 
 void	ft_parse_map(t_fdf *s_fdf)
 {
@@ -32,7 +32,8 @@ void	ft_parse_map(t_fdf *s_fdf)
 	close(s_fdf->s_file_data.fd);
 	if (s_fdf->map_data.total_size == -1)
 		ft_print_error_and_exit();
-	s_fdf->map_data.map = ft_calloc(s_fdf->map_data.total_size, sizeof(*(s_fdf->map_data.map)));
+	s_fdf->map_data.map = ft_calloc(s_fdf->map_data.total_size, \
+			sizeof(*(s_fdf->map_data.map)));
 	if (s_fdf->map_data.map == NULL)
 		ft_print_error_and_exit();
 	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
@@ -84,7 +85,8 @@ static ssize_t	ft_map_size(t_fdf *s_fdf)
 	while (row != NULL)
 	{
 		// 1er calcul inutile
-		if (s_fdf->map_data.total_column != ft_array_of_string_len((const char **)row))
+		if (s_fdf->map_data.total_column \
+				!= ft_array_of_string_len((const char **)row))
 		{
 			ft_free_row(row);
 			errno = EFTYPE;
