@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:54:32 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:50:17 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	ft_parse_map(t_fdf *s_fdf)
 	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
 	if (s_fdf->s_file_data.fd == -1)
 		ft_print_error_and_exit();
-	s_fdf->map_data.total_size = ft_map_size(s_fdf);
+	s_fdf->s_map_data.total_size = ft_map_size(s_fdf);
 	close(s_fdf->s_file_data.fd);
-	if (s_fdf->map_data.total_size == -1)
+	if (s_fdf->s_map_data.total_size == -1)
 		ft_print_error_and_exit();
-	s_fdf->map_data.map = ft_calloc(s_fdf->map_data.total_size, \
-			sizeof(*(s_fdf->map_data.map)));
-	if (s_fdf->map_data.map == NULL)
+	s_fdf->s_map_data.s_map = ft_calloc(s_fdf->s_map_data.total_size, \
+			sizeof(*(s_fdf->s_map_data.s_map)));
+	if (s_fdf->s_map_data.s_map == NULL)
 		ft_print_error_and_exit();
 	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
 	if (s_fdf->s_file_data.fd == -1)
@@ -47,10 +47,10 @@ void	ft_parse_map(t_fdf *s_fdf)
 	{
 		while (row[j] != NULL)
 		{
-			s_fdf->map_data.map[i].x = x;
-			s_fdf->map_data.map[i].y = y;
-			s_fdf->map_data.map[i].z = ft_atoi(row[j]);
-			s_fdf->map_data.map[i].colour = 0x00FF00;
+			s_fdf->s_map_data.s_map[i].x = x;
+			s_fdf->s_map_data.s_map[i].y = y;
+			s_fdf->s_map_data.s_map[i].z = ft_atoi(row[j]);
+			s_fdf->s_map_data.s_map[i].colour = 0x00FF00;
 			++x;
 			++i;
 			++j;
@@ -74,18 +74,18 @@ static ssize_t	ft_map_size(t_fdf *s_fdf)
 {
 	char	**row;
 
-	s_fdf->map_data.total_row = 0;
+	s_fdf->s_map_data.total_row = 0;
 	row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	if (row == NULL)
 	{
 		close(s_fdf->s_file_data.fd);
 		ft_print_error_and_exit();
 	}
-	s_fdf->map_data.total_column = ft_array_of_string_len((const char **)row);
+	s_fdf->s_map_data.total_column = ft_array_of_string_len((const char **)row);
 	while (row != NULL)
 	{
 		// 1er calcul inutile
-		if (s_fdf->map_data.total_column \
+		if (s_fdf->s_map_data.total_column \
 				!= ft_array_of_string_len((const char **)row))
 		{
 			ft_free_row(row);
@@ -93,10 +93,10 @@ static ssize_t	ft_map_size(t_fdf *s_fdf)
 			return (-1);
 		}
 		ft_free_row(row);
-		++(s_fdf->map_data.total_row);
+		++(s_fdf->s_map_data.total_row);
 		row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	}
-	return (s_fdf->map_data.total_column * s_fdf->map_data.total_row);
+	return (s_fdf->s_map_data.total_column * s_fdf->s_map_data.total_row);
 }
 
 static int	ft_array_of_string_len(const char **array)
