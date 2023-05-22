@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:53:29 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:34:46 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	ft_initialize_fdf_data(t_fdf *s_fdf, char *path)
 	s_fdf->s_isometric_data.move_y = 0;
 	s_fdf->map_data.map = NULL;
 	s_fdf->mode = NORMAL_MODE;
+	s_fdf->toggle_menu = true;
+	s_fdf->exit_status = EXIT_SUCCESS;
 }
 
 static void	ft_initialize_window(t_mlx_data *s_window)
@@ -64,11 +66,16 @@ static void	ft_initialize_window(t_mlx_data *s_window)
 			WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_NAME);
 	if (s_window->win_ptr == NULL)
 	{
-	//	free(s_window->win_ptr);
+		free(s_window->win_ptr);
 		exit(EXIT_FAILURE);
 	}
 	s_window->s_img.img = mlx_new_image(s_window->mlx_ptr, \
 			WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (s_window->s_img.img == NULL)
+	{
+		free(s_window->win_ptr);
+		exit(EXIT_FAILURE);
+	}
 	s_window->s_img.addr = mlx_get_data_addr(s_window->s_img.img, \
 			&s_window->s_img.bpp, &s_window->s_img.line_len, \
 			&s_window->s_img.endian);
@@ -78,20 +85,25 @@ static void	ft_set_hooks(t_fdf *s_fdf)
 {
 	//mlx_mouse_hook(s_fdf->mlx_data.win_ptr, &ft_mouse_click, s_fdf);
 	mlx_key_hook(s_fdf->mlx_data.win_ptr, &ft_key_pressed, s_fdf);
+	mlx_mouse_hook(s_fdf->mlx_data.win_ptr, &ft_mouse_scroll, s_fdf);
 	mlx_hook(s_fdf->mlx_data.win_ptr, ON_DESTROY, 0, &ft_close, s_fdf);
 	mlx_hook(s_fdf->mlx_data.win_ptr, ON_KEYDOWN, 0, &ft_hold_key, s_fdf);
 }
 
 void	ft_print_help(t_fdf *s_fdf)
 {
+	if (s_fdf->toggle_menu == false)
+		return ;
 	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
 			10, 10, 0xFFFFFF, "N: NORMAL MODE");
 	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
-			10, 30, 0xFFFFFF, "Z: NORMAL MODE");
+			10, 30, 0xFFFFFF, "Z: ZOOM MODE");
 	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
 			10, 50, 0xFFFFFF, "R: ROTATE MODE");
 	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
 			10, 70, 0xFFFFFF, "H: HEIGHT MODE");
 	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
 			10, 90, 0xFFFFFF, "USE ARROW KEYS");
+	mlx_string_put(s_fdf->mlx_data.mlx_ptr, s_fdf->mlx_data.win_ptr, \
+			10, 110, 0xFFFFFF, "M: TOGGLE HELP MENU");
 }

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/21 03:44:20 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:34:23 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 #define	DOWN_KEY 125
 #define	LEFT_KEY 123
 #define	RIGHT_KEY 124
+#define	UP_SCROLL 4
+#define	DOWN_SCROLL 5
+#define M_KEY 46
 #define N_KEY 45
 #define R_KEY 15
 #define H_KEY 4
@@ -100,7 +103,7 @@ typedef struct	s_isometric_data {
 	int		origin_x;
 	int		origin_y;
 	double	angle;
-	int		interspace;
+	unsigned int		interspace;
 	int		height;
 	int		move_x;
 	int		move_y;
@@ -112,6 +115,8 @@ typedef struct	s_fdf {
 	t_file_data			s_file_data;
 	t_isometric_data	s_isometric_data;
 	int					mode;
+	bool				toggle_menu;
+	bool				exit_status;
 }				t_fdf;
 
 
@@ -125,6 +130,7 @@ void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour);
 /*	EVENTS FUNCTIONS	*/
 //int	ft_mouse_click(int button, int x, int y, t_fdf *s_fdf);
 int	ft_key_pressed(int keycode, t_fdf *s_fdf);
+int	ft_mouse_scroll(int button, int x, int y, t_fdf *s_fdf);
 int	ft_close(t_fdf *s_fdf);
 int	ft_hold_key(int keycode, t_fdf *s_fdf);
 void	ft_move(t_fdf *s_fdf, int keycode);
