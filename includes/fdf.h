@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 18:01:17 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:26:55 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ typedef struct s_point {
 	int		colour;
 }				t_point;
 
+typedef struct	s_line {
+	t_point	start;
+	t_point	end;
+}				t_line;
+
 typedef struct	s_map_data {
 	t_point		*s_map;
 	int			total_row;
@@ -130,24 +135,21 @@ typedef struct	s_fdf {
 /*	MAIN FUNCTIONS	*/
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path);
 
-/*	DRAWING FUNCTIONS	*/
-void	ft_pixel_put_image(t_img_data *s_image, int x, int y, int colour);
-
 /*	EVENTS FUNCTIONS	*/
 int	ft_key_pressed(int keycode, t_fdf *s_fdf);
-int	ft_mouse_scroll(int button, int x, int y, t_fdf *s_fdf);
+int	ft_click(int button, int x, int y, t_fdf *s_fdf);
 int	ft_close(t_fdf *s_fdf);
 int	ft_hold_key(int keycode, t_fdf *s_fdf);
 void	ft_move(t_fdf *s_fdf, int keycode);
 void	ft_height(t_fdf *s_fdf, int keycode);
 void	ft_zoom(t_fdf *s_fdf, int keycode);
 void	ft_rotate(t_fdf *s_fdf, int keycode);
-int	ft_mouse_release(int button, int x, int y, t_fdf *s_fdf);
-int	ft_mouse_move(int x, int y, t_fdf *s_fdf);
+int	ft_unclick(int button, int x, int y, t_fdf *s_fdf);
+int	ft_move_mouse(int x, int y, t_fdf *s_fdf);
 
 
 /*	BRESENHAM'S FUNCTIONS	*/
-void	ft_draw_line(t_img_data *s_img, t_point start, t_point end);
+void	ft_draw_line(t_img_data *s_img, t_line *s_line);
 
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_map(t_fdf *s_fdf);

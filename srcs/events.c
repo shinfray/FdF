@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 18:01:30 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 18:52:34 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 void	ft_reprint_image(t_fdf *s_fdf);
 void	ft_reset(t_fdf *s_fdf);
 
-int	ft_mouse_scroll(int button, int x, int y, t_fdf *s_fdf)
+int	ft_click(int button, int x, int y, t_fdf *s_fdf)
 {
-	// recheck les bons boutons sur les macs 19
 	if (button == DOWN_SCROLL)
 		s_fdf->s_isometric_data.interspace += 1;
 	else if (button == UP_SCROLL && s_fdf->s_isometric_data.interspace > 0)
@@ -35,7 +34,7 @@ int	ft_mouse_scroll(int button, int x, int y, t_fdf *s_fdf)
 	return (0);
 }
 
-int	ft_mouse_release(int button, int x, int y, t_fdf *s_fdf)
+int	ft_unclick(int button, int x, int y, t_fdf *s_fdf)
 {
 	if (button == LEFT_CLICK)
 	{
@@ -48,7 +47,7 @@ int	ft_mouse_release(int button, int x, int y, t_fdf *s_fdf)
 	return (0);
 }
 
-int	ft_mouse_move(int x, int y, t_fdf *s_fdf)
+int	ft_move_mouse(int x, int y, t_fdf *s_fdf)
 {
 	if (s_fdf->drag_drop_status == true)
 	{
