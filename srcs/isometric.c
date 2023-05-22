@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:33:08 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 20:31:03 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:45:28 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static void	ft_print_colums(t_fdf *s_fdf, t_line *s_line)
 		{
 			s_line->start = ft_isometric((s_fdf->s_map_data.s_map)[i], \
 				&(s_fdf->s_isometric_data));
-			s_line->end = ft_isometric((s_fdf->s_map_data.s_map)[i + s_fdf->s_map_data.total_column], \
-				&(s_fdf->s_isometric_data));
+			s_line->end = ft_isometric((s_fdf->s_map_data.s_map)[i \
+				+ s_fdf->s_map_data.total_column], &(s_fdf->s_isometric_data));
 			ft_draw_line(&(s_fdf->s_mlx_data.s_img), s_line);
 			i += s_fdf->s_map_data.total_column;
 		}

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 17:50:17 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:59:31 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static ssize_t	ft_map_size(t_fdf *s_fdf)
 	{
 		// 1er calcul inutile
 		if (s_fdf->s_map_data.total_column \
-				!= ft_array_of_string_len((const char **)row))
+			!= ft_array_of_string_len((const char **)row))
 		{
 			ft_free_row(row);
 			errno = EFTYPE;

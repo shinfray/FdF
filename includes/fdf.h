@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 20:26:55 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/22 21:02:50 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,16 @@ typedef struct	s_line {
 	t_point	end;
 }				t_line;
 
+typedef struct	s_isometric_data {
+	int		origin_x;
+	int		origin_y;
+	double	angle;
+	unsigned int		interspace;
+	int		height;
+	int		move_x;
+	int		move_y;
+}				t_isometric_data;
+
 typedef struct	s_map_data {
 	t_point		*s_map;
 	int			total_row;
@@ -102,23 +112,12 @@ typedef struct	s_file_data {
 	char	*path;
 }				t_file_data;
 
-typedef struct	s_isometric_data {
-	int		origin_x;
-	int		origin_y;
-	double	angle;
-	unsigned int		interspace;
-	int		height;
-	int		move_x;
-	int		move_y;
-}				t_isometric_data;
-
 typedef struct s_drag_drop_data {
 	int	click_pos_x;
 	int	click_pos_y;
 	int	previous_pos_x;
 	int	previous_pos_y;
 }				t_drag_drop_data;
-
 
 typedef struct	s_fdf {
 	t_mlx_data			s_mlx_data;
@@ -135,6 +134,13 @@ typedef struct	s_fdf {
 /*	MAIN FUNCTIONS	*/
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path);
 
+/*	ISOMETRICS FUNCTIONS	*/
+void	ft_print_map(t_fdf *s_fdf);
+double	ft_rad(int degree);
+
+/*	BRESENHAM FUNCTIONS	*/
+void	ft_draw_line(t_img_data *s_img, t_line *s_line);
+
 /*	EVENTS FUNCTIONS	*/
 int	ft_key_pressed(int keycode, t_fdf *s_fdf);
 int	ft_click(int button, int x, int y, t_fdf *s_fdf);
@@ -147,16 +153,8 @@ void	ft_rotate(t_fdf *s_fdf, int keycode);
 int	ft_unclick(int button, int x, int y, t_fdf *s_fdf);
 int	ft_move_mouse(int x, int y, t_fdf *s_fdf);
 
-
-/*	BRESENHAM'S FUNCTIONS	*/
-void	ft_draw_line(t_img_data *s_img, t_line *s_line);
-
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_map(t_fdf *s_fdf);
-
-/*	ISOMETRICS FUNCTIONS	*/
-void	ft_print_map(t_fdf *s_fdf);
-double	ft_rad(int degree);
 
 void	ft_print_help(t_fdf *s_fdf);
 
