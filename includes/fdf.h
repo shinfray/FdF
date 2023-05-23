@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:42:30 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:51:36 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,17 +157,16 @@ void	ft_height(t_fdf *s_fdf, int keycode);
 void	ft_zoom(t_fdf *s_fdf, int keycode);
 void	ft_rotate(t_fdf *s_fdf, int keycode);
 
-
-
+/*	MOUSE_EVENTS FUNCTIONS	*/
+int	ft_click(int button, int x, int y, t_fdf *s_fdf);
+int	ft_unclick(int button, int x, int y, t_fdf *s_fdf);
+int	ft_move_mouse(int x, int y, t_fdf *s_fdf);
 
 
 /*	EVENTS FUNCTIONS	*/
 int	ft_key_pressed(int keycode, t_fdf *s_fdf);
-int	ft_click(int button, int x, int y, t_fdf *s_fdf);
 int	ft_close(t_fdf *s_fdf);
 int	ft_hold_key(int keycode, t_fdf *s_fdf);
-int	ft_unclick(int button, int x, int y, t_fdf *s_fdf);
-int	ft_move_mouse(int x, int y, t_fdf *s_fdf);
 
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_map(t_fdf *s_fdf);

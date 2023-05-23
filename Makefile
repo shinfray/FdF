@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/05/23 16:45:37 by shinfray         ###   ########.fr        #
+#    Updated: 2023/05/23 16:54:25 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS_FDF:= 	main.c \
 			bresenham.c \
 			isometric.c \
 			actions.c \
+			mouse_events.c \
 			parse.c \
 			events.c
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_FDF}}
