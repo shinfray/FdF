@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 11:45:26 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:20:09 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,31 @@
 
 void	ft_reprint_image(t_fdf *s_fdf);
 void	ft_reset(t_fdf *s_fdf);
+void static	ft_drag_drop(t_fdf *s_fdf, int x, int y);
 
 int	ft_click(int button, int x, int y, t_fdf *s_fdf)
 {
-	if (button == DOWN_SCROLL)
-	{
-		s_fdf->s_isometric_data.interspace += s_fdf->s_isometric_data.interspace / 100 * 5;
-		s_fdf->s_isometric_data.height += s_fdf->s_isometric_data.height / 100 * 5;
-	}
-	else if (button == UP_SCROLL && s_fdf->s_isometric_data.interspace > 0)
-	{
-		s_fdf->s_isometric_data.interspace -= s_fdf->s_isometric_data.interspace / 100 * 5;
-		s_fdf->s_isometric_data.height -= s_fdf->s_isometric_data.height / 100 * 5;
-	}
+	if (button == DOWN_SCROLL || button == UP_SCROLL)
+		ft_zoom(s_fdf, button);
 	else if (button == LEFT_CLICK && x >= 0 && y >= 0)
-	{
-		s_fdf->s_drag_drop_data.previous_pos_x = s_fdf->s_isometric_data.move_x;
-		s_fdf->s_drag_drop_data.previous_pos_y = s_fdf->s_isometric_data.move_y;
-		s_fdf->s_drag_drop_data.click_pos_x = x;
-		s_fdf->s_drag_drop_data.click_pos_y = y;
-		s_fdf->drag_drop_status = true;
-		return (0);
-	}
-	ft_reprint_image(s_fdf);
+		ft_drag_drop(s_fdf, x, y);
 	return (0);
 }
 
 int	ft_unclick(int button, int x, int y, t_fdf *s_fdf)
 {
 	if (button == LEFT_CLICK)
-	{
-		s_fdf->s_drag_drop_data.click_pos_x = x;
-		s_fdf->s_drag_drop_data.click_pos_y = y;
+		ft_drag_drop(s_fdf, x, y);
+	return (0);
+}
+
+void static	ft_drag_drop(t_fdf *s_fdf, int x, int y)
+{
 		s_fdf->s_drag_drop_data.previous_pos_x = s_fdf->s_isometric_data.move_x;
 		s_fdf->s_drag_drop_data.previous_pos_y = s_fdf->s_isometric_data.move_y;
-		s_fdf->drag_drop_status = false;
-	}
-	return (0);
+		s_fdf->s_drag_drop_data.click_pos_x = x;
+		s_fdf->s_drag_drop_data.click_pos_y = y;
+		s_fdf->drag_drop_status = s_fdf->drag_drop_status ^ 1;
 }
 
 int	ft_move_mouse(int x, int y, t_fdf *s_fdf)
@@ -138,7 +126,6 @@ int	ft_hold_key(int keycode, t_fdf *s_fdf)
 	(ft_mode[2]) = &ft_zoom;
 	(ft_mode[3]) = &ft_rotate;
 	(*ft_mode[s_fdf->mode])(s_fdf, keycode);
-	ft_reprint_image(s_fdf);
 	return (0);
 }
 
@@ -153,6 +140,7 @@ void	ft_move(t_fdf *s_fdf, int keycode)
 		s_fdf->s_isometric_data.move_x -= 10;
 	else if (keycode == RIGHT_KEY)
 		s_fdf->s_isometric_data.move_x += 10;
+	ft_reprint_image(s_fdf);
 }
 
 void	ft_height(t_fdf *s_fdf, int keycode)
@@ -161,20 +149,22 @@ void	ft_height(t_fdf *s_fdf, int keycode)
 		s_fdf->s_isometric_data.height += 1;
 	else if (keycode == DOWN_KEY)
 		s_fdf->s_isometric_data.height -= 1;
+	ft_reprint_image(s_fdf);
 }
 
 void	ft_zoom(t_fdf *s_fdf, int keycode)
 {
-	if (keycode == UP_KEY)
+	if (keycode == UP_KEY || keycode == DOWN_SCROLL)
 	{
 		s_fdf->s_isometric_data.interspace += s_fdf->s_isometric_data.interspace / 100 * 5;
 		s_fdf->s_isometric_data.height += s_fdf->s_isometric_data.height / 100 * 5;
 	}
-	else if (keycode == DOWN_KEY && s_fdf->s_isometric_data.interspace > 0)
+	else if ((keycode == DOWN_KEY || keycode == UP_SCROLL) && s_fdf->s_isometric_data.interspace > 0)
 	{
 		s_fdf->s_isometric_data.interspace -= s_fdf->s_isometric_data.interspace / 100 * 5;
 		s_fdf->s_isometric_data.height -= s_fdf->s_isometric_data.height / 100 * 5;
 	}
+	ft_reprint_image(s_fdf);
 }
 
 void	ft_rotate(t_fdf *s_fdf, int keycode)
@@ -183,6 +173,7 @@ void	ft_rotate(t_fdf *s_fdf, int keycode)
 		s_fdf->s_isometric_data.angle -= ft_rad(1);
 	else if (keycode == DOWN_KEY)
 		s_fdf->s_isometric_data.angle += ft_rad(1);
+	ft_reprint_image(s_fdf);
 	// else if (keycode == LEFT_KEY)
 	// 	s_fdf->s_isometric_data.move_x -= 10;
 	// else if (keycode == RIGHT_KEY)
