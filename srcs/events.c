@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:53:33 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:58:45 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 		s_fdf->mode = HEIGHT_MODE;
 	else if (keycode == X_KEY)
 		ft_reset(s_fdf);
-	if (keycode == N_KEY || keycode == R_KEY || keycode == Z_KEY || keycode == H_KEY)
+	if (keycode == N_KEY || keycode == R_KEY \
+		|| keycode == Z_KEY || keycode == H_KEY)
 		ft_refresh_interface(s_fdf);
 	return (0);
 }
@@ -59,13 +60,15 @@ void	ft_reprint_image(t_fdf *s_fdf)
 	s_fdf->s_mlx_data.s_img.img = mlx_new_image(s_fdf->s_mlx_data.mlx_ptr, \
 			WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (s_fdf->s_mlx_data.s_img.img == NULL)
-		{
-			s_fdf->s_mlx_data.s_img.img = backup;	
-			s_fdf->exit_status = EXIT_FAILURE;
-			ft_close(s_fdf);
-		}
-	s_fdf->s_mlx_data.s_img.addr = mlx_get_data_addr(s_fdf->s_mlx_data.s_img.img, \
-			&(s_fdf->s_mlx_data.s_img.bpp), &(s_fdf->s_mlx_data.s_img.line_len), \
+	{
+		s_fdf->s_mlx_data.s_img.img = backup;
+		s_fdf->exit_status = EXIT_FAILURE;
+		ft_close(s_fdf);
+	}
+	s_fdf->s_mlx_data.s_img.addr = \
+			mlx_get_data_addr(s_fdf->s_mlx_data.s_img.img, \
+			&(s_fdf->s_mlx_data.s_img.bpp), \
+			&(s_fdf->s_mlx_data.s_img.line_len), \
 			&(s_fdf->s_mlx_data.s_img.endian));
 	ft_print_map(s_fdf);
 	ft_refresh_interface(s_fdf);

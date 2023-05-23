@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:51:36 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:06:08 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,33 @@
 # include "libft.h"
 # include "mlx.h"
 
-#define	WINDOW_NAME "FdF"
-#define WINDOW_WIDTH 1080
-#define WINDOW_HEIGHT 720
+# define WINDOW_NAME "FdF"
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 720
 
-#define INTERSPACE 20
+# define INTERSPACE 20
 
-#define	ESCAPE_KEY 53
+# define ESCAPE_KEY 53
 
-#define	UP_KEY 126
-#define	DOWN_KEY 125
-#define	LEFT_KEY 123
-#define	RIGHT_KEY 124
+# define UP_KEY 126
+# define DOWN_KEY 125
+# define LEFT_KEY 123
+# define RIGHT_KEY 124
 
-#define	UP_SCROLL 4
-#define	DOWN_SCROLL 5
-#define	LEFT_CLICK 1
+# define UP_SCROLL 4
+# define DOWN_SCROLL 5
+# define LEFT_CLICK 1
 
-#define H_KEY 4
-#define M_KEY 46
-#define N_KEY 45
-#define R_KEY 15
-#define X_KEY 7
-#define Z_KEY 6
+# define H_KEY 4
+# define M_KEY 46
+# define N_KEY 45
+# define R_KEY 15
+# define X_KEY 7
+# define Z_KEY 6
 
-#define WHITE 0xFFFFFF
-#define GREEN 0x00FF00
-#define DEFAULT_COLOUR GREEN
+# define WHITE 0xFFFFFF
+# define GREEN 0x00FF00
+# define DEFAULT_COLOUR GREEN
 
 enum	e_events {
 	ON_KEYDOWN = 2,
@@ -70,7 +70,7 @@ enum	e_modes {
 	ROTATE_MODE,
 };
 
-typedef struct	s_img_data {
+typedef struct s_img_data {
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -78,7 +78,7 @@ typedef struct	s_img_data {
 	int		endian;
 }				t_img_data;
 
-typedef struct	s_mlx_data {
+typedef struct s_mlx_data {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img_data	s_img;
@@ -91,29 +91,29 @@ typedef struct s_point {
 	int		colour;
 }				t_point;
 
-typedef struct	s_line {
+typedef struct s_line {
 	t_point	start;
 	t_point	end;
 }				t_line;
 
-typedef struct	s_isometric_data {
+typedef struct s_isometric_data {
 	int		origin_x;
 	int		origin_y;
 	double	angle;
-	double		interspace;
-	double		height;
+	double	interspace;
+	double	height;
 	int		move_x;
 	int		move_y;
 }				t_isometric_data;
 
-typedef struct	s_map_data {
+typedef struct s_map_data {
 	t_point		*s_map;
 	int			total_row;
 	int			total_column;
 	ssize_t		total_size;
 }				t_map_data;
 
-typedef struct	s_file_data {
+typedef struct s_file_data {
 	int		fd;
 	char	*path;
 }				t_file_data;
@@ -125,7 +125,7 @@ typedef struct s_drag_drop_data {
 	int	previous_pos_y;
 }				t_drag_drop_data;
 
-typedef struct	s_fdf {
+typedef struct s_fdf {
 	t_mlx_data			s_mlx_data;
 	t_map_data			s_map_data;
 	t_file_data			s_file_data;
@@ -158,15 +158,14 @@ void	ft_zoom(t_fdf *s_fdf, int keycode);
 void	ft_rotate(t_fdf *s_fdf, int keycode);
 
 /*	MOUSE_EVENTS FUNCTIONS	*/
-int	ft_click(int button, int x, int y, t_fdf *s_fdf);
-int	ft_unclick(int button, int x, int y, t_fdf *s_fdf);
-int	ft_move_mouse(int x, int y, t_fdf *s_fdf);
-
+int		ft_click(int button, int x, int y, t_fdf *s_fdf);
+int		ft_unclick(int button, int x, int y, t_fdf *s_fdf);
+int		ft_move_mouse(int x, int y, t_fdf *s_fdf);
 
 /*	EVENTS FUNCTIONS	*/
-int	ft_key_pressed(int keycode, t_fdf *s_fdf);
-int	ft_close(t_fdf *s_fdf);
-int	ft_hold_key(int keycode, t_fdf *s_fdf);
+int		ft_key_pressed(int keycode, t_fdf *s_fdf);
+int		ft_close(t_fdf *s_fdf);
+int		ft_hold_key(int keycode, t_fdf *s_fdf);
 
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_map(t_fdf *s_fdf);
