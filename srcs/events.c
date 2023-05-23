@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 18:52:34 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:45:26 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ void	ft_reset(t_fdf *s_fdf);
 int	ft_click(int button, int x, int y, t_fdf *s_fdf)
 {
 	if (button == DOWN_SCROLL)
-		s_fdf->s_isometric_data.interspace += 1;
+	{
+		s_fdf->s_isometric_data.interspace += s_fdf->s_isometric_data.interspace / 100 * 5;
+		s_fdf->s_isometric_data.height += s_fdf->s_isometric_data.height / 100 * 5;
+	}
 	else if (button == UP_SCROLL && s_fdf->s_isometric_data.interspace > 0)
-		s_fdf->s_isometric_data.interspace -= 1;
+	{
+		s_fdf->s_isometric_data.interspace -= s_fdf->s_isometric_data.interspace / 100 * 5;
+		s_fdf->s_isometric_data.height -= s_fdf->s_isometric_data.height / 100 * 5;
+	}
 	else if (button == LEFT_CLICK && x >= 0 && y >= 0)
 	{
 		s_fdf->s_drag_drop_data.previous_pos_x = s_fdf->s_isometric_data.move_x;
@@ -160,9 +166,15 @@ void	ft_height(t_fdf *s_fdf, int keycode)
 void	ft_zoom(t_fdf *s_fdf, int keycode)
 {
 	if (keycode == UP_KEY)
-		s_fdf->s_isometric_data.interspace += 1;
+	{
+		s_fdf->s_isometric_data.interspace += s_fdf->s_isometric_data.interspace / 100 * 5;
+		s_fdf->s_isometric_data.height += s_fdf->s_isometric_data.height / 100 * 5;
+	}
 	else if (keycode == DOWN_KEY && s_fdf->s_isometric_data.interspace > 0)
-		s_fdf->s_isometric_data.interspace -= 1;
+	{
+		s_fdf->s_isometric_data.interspace -= s_fdf->s_isometric_data.interspace / 100 * 5;
+		s_fdf->s_isometric_data.height -= s_fdf->s_isometric_data.height / 100 * 5;
+	}
 }
 
 void	ft_rotate(t_fdf *s_fdf, int keycode)

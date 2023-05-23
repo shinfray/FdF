@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 21:02:50 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:40:42 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 #define	WINDOW_NAME "FdF"
 #define WINDOW_WIDTH 1080
 #define WINDOW_HEIGHT 720
+
+#define INTERSPACE 20
 
 #define	ESCAPE_KEY 53
 
@@ -94,8 +96,8 @@ typedef struct	s_isometric_data {
 	int		origin_x;
 	int		origin_y;
 	double	angle;
-	unsigned int		interspace;
-	int		height;
+	double		interspace;
+	double		height;
 	int		move_x;
 	int		move_y;
 }				t_isometric_data;

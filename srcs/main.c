@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 19:25:14 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:22:01 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	main(int argc, char **argv)
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path)
 {
 	s_fdf->s_file_data.path = path;
-	s_fdf->s_isometric_data.interspace = 20;
-	s_fdf->s_isometric_data.height = 3;
+	s_fdf->s_isometric_data.interspace = INTERSPACE;
+	s_fdf->s_isometric_data.height = INTERSPACE;
 	s_fdf->s_isometric_data.angle = ft_rad(30);
 	s_fdf->s_isometric_data.origin_x = WINDOW_WIDTH / 2;
-	s_fdf->s_isometric_data.origin_y = 100;
+	s_fdf->s_isometric_data.origin_y = WINDOW_HEIGHT / 8;
 	s_fdf->s_isometric_data.move_x = s_fdf->s_isometric_data.origin_x;
 	s_fdf->s_isometric_data.move_y = s_fdf->s_isometric_data.origin_y;
 	s_fdf->mode = NORMAL_MODE;
