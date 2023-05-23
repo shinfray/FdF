@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/05/23 19:58:35 by shinfray         ###   ########.fr        #
+#    Updated: 2023/05/23 20:20:50 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,17 +32,17 @@ OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
 
 DEPS:=	${OBJS:.o=.d}
 
-LIBFT:=	libft/libft.a
-MLX:=	FdF_files/minilibx_macos/libmlx.a
+LIBFT:=	libs/libft/libft.a
+MLX:=	libs/minilibx_macos/libmlx.a
 CFLAGS:= -Wall -Wextra -Werror
 
-# ROOT_INC_DIRS:= includes libft/includes FdF_files/minilibx_macos
+# ROOT_INC_DIRS:= includes libs/libft/includes libs/minilibx_macos
 # INC_DIRS:= ${shell find ${ROOT_INC_DIRS} -type d}
-INC_DIRS:= includes libft/includes FdF_files/minilibx_macos
+INC_DIRS:= includes libs/libft/includes libs/minilibx_macos
 
 CPPFLAGS:= ${addprefix -I,${INC_DIRS}} -MMD -MP
 
-LIB_DIR:= libft FdF_files/minilibx_macos
+LIB_DIR:= libs/libft libs/minilibx_macos
 LDFLAGS:= ${addprefix -L,${LIB_DIR}}
 LDLIBS:= -lm -lft -lmlx -framework OpenGL -framework Appkit
 
