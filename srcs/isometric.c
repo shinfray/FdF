@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 03:33:08 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 14:44:08by shinfray         ###   ########.fr       */
+/*   Created: 2023/05/23 16:20:19 by shinfray          #+#    #+#             */
+/*   Updated: 2023/05/23 16:34:17 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_print_map(t_fdf *s_fdf)
 
 	ft_print_rows(s_fdf, &s_line);
 	ft_print_colums(s_fdf, &s_line);
-	ft_refresh(s_fdf);
+	ft_refresh_interface(s_fdf);
 }
 
 static void	ft_print_rows(t_fdf *s_fdf, t_line *s_line)

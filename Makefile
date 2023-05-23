@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/05/22 19:31:17 by shinfray         ###   ########.fr        #
+#    Updated: 2023/05/23 16:37:01 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ BUILD_DIR:= build
 SRCS_DIR:= srcs
 
 SRCS_FDF:= 	main.c \
-			events.c \
+			interface.c \
 			bresenham.c \
 			isometric.c \
 			parse.c \
-			utils.c
+			events.c
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_FDF}}
 
 OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
