@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:39:08 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:45:06 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:53:48 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_move(t_fdf *s_fdf, int keycode);
 void	ft_height(t_fdf *s_fdf, int keycode);
 void	ft_zoom(t_fdf *s_fdf, int keycode);
 void	ft_rotate(t_fdf *s_fdf, int keycode);
+void	ft_reset(t_fdf *s_fdf);
 
 void	ft_move(t_fdf *s_fdf, int keycode)
 {
@@ -65,5 +66,11 @@ void	ft_rotate(t_fdf *s_fdf, int keycode)
 		s_fdf->s_isometric_data.angle -= ft_rad(1);
 	else if (keycode == DOWN_KEY)
 		s_fdf->s_isometric_data.angle += ft_rad(1);
+	ft_reprint_image(s_fdf);
+}
+
+void	ft_reset(t_fdf *s_fdf)
+{
+	ft_set_fdf_data(s_fdf, s_fdf->s_file_data.path);
 	ft_reprint_image(s_fdf);
 }

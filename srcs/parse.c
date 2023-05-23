@@ -6,12 +6,13 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 15:36:40 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:55:53 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void			ft_parse_map(t_fdf *s_fdf);
 static ssize_t	ft_map_size(t_fdf *s_fdf);
 static int		ft_array_of_string_len(const char **array);
 static char		*ft_free_row(char **row);

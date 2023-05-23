@@ -6,11 +6,14 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:12:39 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 17:17:11 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:24:43 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	ft_key_pressed(int keycode, t_fdf *s_fdf);
+int	ft_hold_key(int keycode, t_fdf *s_fdf);
 
 int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 {

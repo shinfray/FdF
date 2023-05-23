@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isometric.c                                        :+:      :+:    :+:   */
+/*   print_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 16:20:19 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:34:17 by shinfray         ###   ########.fr       */
+/*   Created: 2023/05/23 19:50:59 by shinfray          #+#    #+#             */
+/*   Updated: 2023/05/23 19:54:38 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-double			ft_rad(int degree);
 void			ft_print_map(t_fdf *s_fdf);
+void			ft_reprint_image(t_fdf *s_fdf);
 static void		ft_print_rows(t_fdf *s_fdf, t_line *s_line);
 static void		ft_print_colums(t_fdf *s_fdf, t_line *s_line);
 static t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data);
-
-double	ft_rad(int degree)
-{
-	return (degree * (M_PI / 180.0));
-}
 
 /* à protéger quand il n'y a qu'un point, qu'une ligne, ... */
 void	ft_print_map(t_fdf *s_fdf)
@@ -31,6 +26,28 @@ void	ft_print_map(t_fdf *s_fdf)
 	ft_print_rows(s_fdf, &s_line);
 	ft_print_colums(s_fdf, &s_line);
 	ft_refresh_interface(s_fdf);
+}
+
+void	ft_reprint_image(t_fdf *s_fdf)
+{
+	void		*backup;
+
+	backup = s_fdf->s_mlx_data.s_img.img;
+	s_fdf->s_mlx_data.s_img.img = mlx_new_image(s_fdf->s_mlx_data.mlx_ptr, \
+			WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (s_fdf->s_mlx_data.s_img.img == NULL)
+	{
+		s_fdf->s_mlx_data.s_img.img = backup;
+		s_fdf->exit_status = EXIT_FAILURE;
+		ft_close(s_fdf);
+	}
+	s_fdf->s_mlx_data.s_img.addr = \
+			mlx_get_data_addr(s_fdf->s_mlx_data.s_img.img, \
+			&(s_fdf->s_mlx_data.s_img.bpp), \
+			&(s_fdf->s_mlx_data.s_img.line_len), \
+			&(s_fdf->s_mlx_data.s_img.endian));
+	ft_print_map(s_fdf);
+	mlx_destroy_image(s_fdf->s_mlx_data.mlx_ptr, backup);
 }
 
 static void	ft_print_rows(t_fdf *s_fdf, t_line *s_line)
