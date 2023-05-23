@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 19:59:49 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:06:18 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ typedef struct s_mlx_data {
 	t_img_data	s_img;
 }				t_mlx_data;
 
+typedef struct s_file_data {
+	int		fd;
+	char	*path;
+}				t_file_data;
+
 typedef struct s_point {
 	int		x;
 	int		y;
@@ -113,11 +118,6 @@ typedef struct s_map_data {
 	ssize_t		total_size;
 }				t_map_data;
 
-typedef struct s_file_data {
-	int		fd;
-	char	*path;
-}				t_file_data;
-
 typedef struct s_drag_drop_data {
 	int	click_pos_x;
 	int	click_pos_y;
@@ -127,9 +127,9 @@ typedef struct s_drag_drop_data {
 
 typedef struct s_fdf {
 	t_mlx_data			s_mlx_data;
-	t_map_data			s_map_data;
 	t_file_data			s_file_data;
 	t_isometric_data	s_isometric_data;
+	t_map_data			s_map_data;
 	t_drag_drop_data	s_drag_drop_data;
 	int					mode;
 	bool				toggle_menu;
