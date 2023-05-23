@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:33:08 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 11:21:41 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:44:08by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void	ft_print_map(t_fdf *s_fdf)
 
 	ft_print_rows(s_fdf, &s_line);
 	ft_print_colums(s_fdf, &s_line);
-	mlx_put_image_to_window(s_fdf->s_mlx_data.mlx_ptr, \
-		s_fdf->s_mlx_data.win_ptr, s_fdf->s_mlx_data.s_img.img, 0, 0);
-	ft_print_help(s_fdf);
+	ft_refresh(s_fdf);
 }
 
 static void	ft_print_rows(t_fdf *s_fdf, t_line *s_line)

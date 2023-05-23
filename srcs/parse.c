@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/22 20:59:31 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:36:40 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_parse_map(t_fdf *s_fdf)
 			s_fdf->s_map_data.s_map[i].x = x;
 			s_fdf->s_map_data.s_map[i].y = y;
 			s_fdf->s_map_data.s_map[i].z = ft_atoi(row[j]);
-			s_fdf->s_map_data.s_map[i].colour = 0x00FF00;
+			s_fdf->s_map_data.s_map[i].colour = DEFAULT_COLOUR;
 			++x;
 			++i;
 			++j;

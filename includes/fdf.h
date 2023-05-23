@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 14:15:20 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:47:52 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@
 #define R_KEY 15
 #define X_KEY 7
 #define Z_KEY 6
+
+#define WHITE 0xFFFFFF
+#define GREEN 0x00FF00
+#define DEFAULT_COLOUR GREEN
 
 enum	e_events {
 	ON_KEYDOWN = 2,
@@ -161,5 +165,6 @@ void	ft_parse_map(t_fdf *s_fdf);
 void	ft_print_help(t_fdf *s_fdf);
 
 void	ft_print_mode(t_fdf *s_fdf);
+void	ft_refresh(t_fdf *s_fdf);
 
 #endif

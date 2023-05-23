@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:40:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 14:20:09 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:24:41 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_reprint_image(t_fdf *s_fdf);
 void	ft_reset(t_fdf *s_fdf);
 void static	ft_drag_drop(t_fdf *s_fdf, int x, int y);
+void	ft_refresh(t_fdf *s_fdf);
 
 int	ft_click(int button, int x, int y, t_fdf *s_fdf)
 {
@@ -52,16 +53,19 @@ int	ft_move_mouse(int x, int y, t_fdf *s_fdf)
 	return (0);
 }
 
+void	ft_refresh(t_fdf *s_fdf)
+{
+	mlx_put_image_to_window(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, s_fdf->s_mlx_data.s_img.img, 0, 0);
+	ft_print_help(s_fdf);
+	ft_print_mode(s_fdf);
+}
+
 int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 {
 	if (keycode == ESCAPE_KEY)
 		return (ft_close(s_fdf));
 	else if (keycode == M_KEY)
-	{
-		s_fdf->toggle_menu = s_fdf->toggle_menu ^ 1;
-		mlx_put_image_to_window(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, s_fdf->s_mlx_data.s_img.img, 0, 0);
-		ft_print_help(s_fdf);
-	}
+		ft_refresh(s_fdf);
 	else if (keycode == N_KEY)
 		s_fdf->mode = NORMAL_MODE;
 	else if (keycode == R_KEY)
@@ -72,6 +76,8 @@ int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 		s_fdf->mode = HEIGHT_MODE;
 	else if (keycode == X_KEY)
 		ft_reset(s_fdf);
+	if (keycode == N_KEY || keycode == R_KEY || keycode == Z_KEY || keycode == H_KEY)
+		ft_refresh(s_fdf);
 	return (0);
 }
 
@@ -111,6 +117,7 @@ void	ft_reprint_image(t_fdf *s_fdf)
 	mlx_put_image_to_window(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, \
 			s_fdf->s_mlx_data.s_img.img, 0, 0);
 	ft_print_help(s_fdf);
+	ft_print_mode(s_fdf);
 	mlx_destroy_image(s_fdf->s_mlx_data.mlx_ptr, backup);
 }
 
