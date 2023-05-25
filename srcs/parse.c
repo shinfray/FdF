@@ -6,31 +6,30 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 17:46:31 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:58:27 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 void			ft_parse_map(t_fdf *s_fdf);
-static ssize_t	ft_map_size(t_fdf *s_fdf);
-static int		ft_array_of_string_len(char **array);
+static ssize_t	ft_check_file_and_map_size(t_fdf *s_fdf);
+static int		ft_array_of_str_len(char **array);
 static char		*ft_free_row(char **row);
 static void		ft_print_error_and_exit(void);
-static bool	ft_check_number_column(int	total_column_on_first_row, char	**row);
+static bool		ft_check_number_column(int total_column_first_row, char **row);
+static bool		ft_check_file_extension(const char *path);
 
 void	ft_parse_map(t_fdf *s_fdf)
 {
 	char	**row;
-	int		x;
-	int		y;
+	int		column_n;
+	int		row_n;
 	int		i;
-	int		j;
 
-	s_fdf->s_map_data.total_size = ft_map_size(s_fdf);
+	s_fdf->s_map_data.total_size = ft_check_file_and_map_size(s_fdf);
 	if (s_fdf->s_map_data.total_size == -1)
 		ft_print_error_and_exit();
-
 	s_fdf->s_map_data.s_map = ft_calloc(s_fdf->s_map_data.total_size, \
 			sizeof(*(s_fdf->s_map_data.s_map)));
 	if (s_fdf->s_map_data.s_map == NULL)
@@ -39,25 +38,23 @@ void	ft_parse_map(t_fdf *s_fdf)
 	if (s_fdf->s_file_data.fd == -1)
 		ft_print_error_and_exit();
 	i = 0;
-	x = 0;
-	y = 0;
+	column_n = 0;
+	row_n = 0;
 	row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	while (row != NULL)
 	{
-		while (row[j] != NULL)
+		while (row[column_n] != NULL)
 		{
-			s_fdf->s_map_data.s_map[i].x = x;
-			s_fdf->s_map_data.s_map[i].y = y;
-			s_fdf->s_map_data.s_map[i].z = ft_atoi(row[j]);
+			s_fdf->s_map_data.s_map[i].x = column_n;
+			s_fdf->s_map_data.s_map[i].y = row_n;
+			s_fdf->s_map_data.s_map[i].z = ft_atoi(row[column_n]);
 			s_fdf->s_map_data.s_map[i].colour = DEFAULT_COLOUR;
-			++x;
+			++column_n;
 			++i;
-			++j;
 		}
 		ft_free_row(row);
-		x = 0;
-		++y;
-		j = 0;
+		column_n = 0;
+		++row_n;
 		row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	}
 	close(s_fdf->s_file_data.fd);
@@ -69,19 +66,20 @@ static void	ft_print_error_and_exit(void)
 	exit(EXIT_FAILURE);
 }
 
-static ssize_t	ft_map_size(t_fdf *s_fdf)
+static ssize_t	ft_check_file_and_map_size(t_fdf *s_fdf)
 {
 	char	**row;
 
+	if (ft_check_file_extension(s_fdf->s_file_data.path) == 1)
+		return (-1);
 	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
 	if (s_fdf->s_file_data.fd == -1)
 		return (-1);
-
 	row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	if (row == NULL)
 		return (-1);
 	s_fdf->s_map_data.total_row = 0;
-	s_fdf->s_map_data.total_column = ft_array_of_string_len(row);
+	s_fdf->s_map_data.total_column = ft_array_of_str_len(row);
 	while (row != NULL)
 	{
 		ft_free_row(row);
@@ -94,9 +92,23 @@ static ssize_t	ft_map_size(t_fdf *s_fdf)
 	return (s_fdf->s_map_data.total_column * s_fdf->s_map_data.total_row);
 }
 
-static bool	ft_check_number_column(int	total_column_on_first_row, char	**row)
+static bool	ft_check_file_extension(const char *path)
 {
-	if (row != NULL && total_column_on_first_row != ft_array_of_string_len(row))
+	const char	*file_extension;
+	const size_t	file_length = ft_strlen(path);
+
+	file_extension = ft_strnstr(path, ".fdf", file_length);
+	if (file_extension == NULL || file_extension[4] != '\0' || file_extension == path)
+	{
+		errno = EINVAL;
+		return (1);
+	}
+	return (0);
+}
+
+static bool	ft_check_number_column(int total_column_first_row, char **row)
+{
+	if (row != NULL && total_column_first_row != ft_array_of_str_len(row))
 	{
 		ft_free_row(row);
 		errno = EFTYPE;
@@ -105,16 +117,16 @@ static bool	ft_check_number_column(int	total_column_on_first_row, char	**row)
 	return (0);
 }
 
-static int	ft_array_of_string_len(char **array)
+static int	ft_array_of_str_len(char **array)
 {
-	int	i;
+	char	**ptr;
 
-	i = 0;
-	if (array == NULL)
+	ptr = array;
+	if (ptr == NULL)
 		return (-1);
-	while (array[i] != NULL)
-		++i;
-	return (i);
+	while (*ptr != NULL)
+		++ptr;
+	return (ptr - array);
 }
 
 static char	*ft_free_row(char **row)

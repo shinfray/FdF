@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:57:21 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 19:58:17 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:07:17 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	ft_close(t_fdf *s_fdf)
 	mlx_destroy_image(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.s_img.img);
 	mlx_destroy_window(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr);
 	free(s_fdf->s_mlx_data.mlx_ptr);
-	if (s_fdf->s_map_data.s_map != NULL)
-		free(s_fdf->s_map_data.s_map);
+	free(s_fdf->s_map_data.s_map);
 	exit(s_fdf->exit_status);
 }
