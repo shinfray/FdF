@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 19:58:27 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 20:10:30 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,32 @@ void	ft_parse_map(t_fdf *s_fdf)
 	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
 	if (s_fdf->s_file_data.fd == -1)
 		ft_print_error_and_exit();
+
 	i = 0;
 	column_n = 0;
 	row_n = 0;
 	row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
-	while (row != NULL)
+	while (row_n < s_fdf->s_map_data.total_row)
 	{
-		while (row[column_n] != NULL)
+		while (column_n < s_fdf->s_map_data.total_column)
 		{
 			s_fdf->s_map_data.s_map[i].x = column_n;
 			s_fdf->s_map_data.s_map[i].y = row_n;
-			s_fdf->s_map_data.s_map[i].z = ft_atoi(row[column_n]);
-			s_fdf->s_map_data.s_map[i].colour = DEFAULT_COLOUR;
-			++column_n;
-			++i;
+			s_fdf->s_map_data.s_map[i].z = ft_atoi(row[column_n++]);
+			s_fdf->s_map_data.s_map[i++].colour = DEFAULT_COLOUR;
 		}
 		ft_free_row(row);
 		column_n = 0;
 		++row_n;
 		row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	}
+
 	close(s_fdf->s_file_data.fd);
+}
+
+static void	ft_fill_array(t_fdf *s_fdf)
+{
+
 }
 
 static void	ft_print_error_and_exit(void)
@@ -94,11 +99,12 @@ static ssize_t	ft_check_file_and_map_size(t_fdf *s_fdf)
 
 static bool	ft_check_file_extension(const char *path)
 {
-	const char	*file_extension;
+	const char		*file_extension;
 	const size_t	file_length = ft_strlen(path);
 
 	file_extension = ft_strnstr(path, ".fdf", file_length);
-	if (file_extension == NULL || file_extension[4] != '\0' || file_extension == path)
+	if (file_extension == NULL || file_extension[4] != '\0' \
+		|| file_extension == path)
 	{
 		errno = EINVAL;
 		return (1);
