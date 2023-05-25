@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 19:02:29 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 20:41:35 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	ft_set_fdf_data(&s_fdf, argv[1]);
-	ft_parse_map(&s_fdf);
 	ft_initialize_window(&(s_fdf.s_mlx_data));
+	ft_parse_map(&s_fdf);
 	ft_print_map(&s_fdf);
 	ft_set_hooks(&s_fdf);
 	mlx_loop(s_fdf.s_mlx_data.mlx_ptr);

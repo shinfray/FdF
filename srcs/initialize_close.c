@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:57:21 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 19:07:17 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:00:25 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		ft_close(t_fdf *s_fdf);
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path)
 {
 	s_fdf->s_file_data.path = path;
+	s_fdf->s_map_data.s_map = NULL;
 	s_fdf->s_isometric_data.interspace = INTERSPACE;
 	s_fdf->s_isometric_data.height = INTERSPACE;
 	s_fdf->s_isometric_data.angle = ft_rad(30);
@@ -76,5 +77,7 @@ int	ft_close(t_fdf *s_fdf)
 	mlx_destroy_window(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr);
 	free(s_fdf->s_mlx_data.mlx_ptr);
 	free(s_fdf->s_map_data.s_map);
+	if (s_fdf->exit_status == EXIT_FAILURE)
+		perror("ERROR");
 	exit(s_fdf->exit_status);
 }

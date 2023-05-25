@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 19:01:21 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 20:29:31 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,9 @@ int		ft_hold_key(int keycode, t_fdf *s_fdf);
 
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_map(t_fdf *s_fdf);
+
+/*	PARSE_UTILS FUNCTIONS	*/
+ssize_t	ft_check_file_format_and_map_size(t_fdf *s_fdf);
+char	*ft_free_row(char **row);
 
 #endif

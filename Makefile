@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/05/23 20:20:50 by shinfray         ###   ########.fr        #
+#    Updated: 2023/05/25 20:22:09 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS_FDF:= 	main.c \
 			actions.c \
 			mouse_events.c \
 			keyboard_events.c \
-			parse.c
+			parse.c \
+			parse_utils.c
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_FDF}}
 
 OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
