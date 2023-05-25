@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 19:55:53 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:46:31 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void			ft_parse_map(t_fdf *s_fdf);
 static ssize_t	ft_map_size(t_fdf *s_fdf);
-static int		ft_array_of_string_len(const char **array);
+static int		ft_array_of_string_len(char **array);
 static char		*ft_free_row(char **row);
 static void		ft_print_error_and_exit(void);
+static bool	ft_check_number_column(int	total_column_on_first_row, char	**row);
 
 void	ft_parse_map(t_fdf *s_fdf)
 {
@@ -26,13 +27,10 @@ void	ft_parse_map(t_fdf *s_fdf)
 	int		i;
 	int		j;
 
-	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
-	if (s_fdf->s_file_data.fd == -1)
-		ft_print_error_and_exit();
 	s_fdf->s_map_data.total_size = ft_map_size(s_fdf);
-	close(s_fdf->s_file_data.fd);
 	if (s_fdf->s_map_data.total_size == -1)
 		ft_print_error_and_exit();
+
 	s_fdf->s_map_data.s_map = ft_calloc(s_fdf->s_map_data.total_size, \
 			sizeof(*(s_fdf->s_map_data.s_map)));
 	if (s_fdf->s_map_data.s_map == NULL)
@@ -75,38 +73,45 @@ static ssize_t	ft_map_size(t_fdf *s_fdf)
 {
 	char	**row;
 
-	s_fdf->s_map_data.total_row = 0;
+	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
+	if (s_fdf->s_file_data.fd == -1)
+		return (-1);
+
 	row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
 	if (row == NULL)
-	{
-		close(s_fdf->s_file_data.fd);
-		ft_print_error_and_exit();
-	}
-	s_fdf->s_map_data.total_column = ft_array_of_string_len((const char **)row);
+		return (-1);
+	s_fdf->s_map_data.total_row = 0;
+	s_fdf->s_map_data.total_column = ft_array_of_string_len(row);
 	while (row != NULL)
 	{
-		// 1er calcul inutile
-		if (s_fdf->s_map_data.total_column \
-			!= ft_array_of_string_len((const char **)row))
-		{
-			ft_free_row(row);
-			errno = EFTYPE;
-			return (-1);
-		}
 		ft_free_row(row);
 		++(s_fdf->s_map_data.total_row);
 		row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
+		if (ft_check_number_column(s_fdf->s_map_data.total_column, row) == 1)
+			return (-1);
 	}
+	close(s_fdf->s_file_data.fd);
 	return (s_fdf->s_map_data.total_column * s_fdf->s_map_data.total_row);
 }
 
-static int	ft_array_of_string_len(const char **array)
+static bool	ft_check_number_column(int	total_column_on_first_row, char	**row)
+{
+	if (row != NULL && total_column_on_first_row != ft_array_of_string_len(row))
+	{
+		ft_free_row(row);
+		errno = EFTYPE;
+		return (1);
+	}
+	return (0);
+}
+
+static int	ft_array_of_string_len(char **array)
 {
 	int	i;
 
 	i = 0;
 	if (array == NULL)
-		return (0);
+		return (-1);
 	while (array[i] != NULL)
 		++i;
 	return (i);
