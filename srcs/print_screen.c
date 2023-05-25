@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:50:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 19:54:38 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:31:27 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,20 @@ static t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data);
 /* à protéger quand il n'y a qu'un point, qu'une ligne, ... */
 void	ft_print_map(t_fdf *s_fdf)
 {
-	t_line			s_line;
+	t_line	s_line;
+	t_point	s_point;
 
-	ft_print_rows(s_fdf, &s_line);
-	ft_print_colums(s_fdf, &s_line);
+	if (s_fdf->s_map_data.total_size > 1)
+	{
+		ft_print_rows(s_fdf, &s_line);
+		ft_print_colums(s_fdf, &s_line);
+	}
+	else
+	{
+		s_point = ft_isometric(*(s_fdf->s_map_data.s_map), \
+			&(s_fdf->s_isometric_data));
+		ft_pixel_put(&(s_fdf->s_mlx_data.s_img), &s_point);
+	}
 	ft_refresh_interface(s_fdf);
 }
 
@@ -39,7 +49,7 @@ void	ft_reprint_image(t_fdf *s_fdf)
 	{
 		s_fdf->s_mlx_data.s_img.img = backup;
 		s_fdf->exit_status = EXIT_FAILURE;
-		ft_close(s_fdf);
+		ft_clean_quit(s_fdf);
 	}
 	s_fdf->s_mlx_data.s_img.addr = \
 			mlx_get_data_addr(s_fdf->s_mlx_data.s_img.img, \

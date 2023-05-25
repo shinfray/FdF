@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:47:34 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:53:01 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:17:56 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_click(int button, int x, int y, t_fdf *s_fdf)
 
 int	ft_unclick(int button, int x, int y, t_fdf *s_fdf)
 {
-	if (button == LEFT_CLICK)
+	if (button == LEFT_CLICK && s_fdf->drag_drop_status == true)
 		ft_drag_drop(s_fdf, x, y);
 	return (0);
 }

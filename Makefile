@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/05/25 20:22:09 by shinfray         ###   ########.fr        #
+#    Updated: 2023/05/25 22:29:31 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,16 @@ NAME:=	fdf
 BUILD_DIR:= build
 SRCS_DIR:= srcs
 
-SRCS_FDF:= 	main.c \
-			initialize_close.c \
-			interface.c \
+SRCS_FDF:= 	actions.c \
 			bresenham.c \
-			print_screen.c \
-			actions.c \
-			mouse_events.c \
+			initialize_quit.c \
+			interface.c \
 			keyboard_events.c \
+			main.c \
+			mouse_events.c \
 			parse.c \
-			parse_utils.c
+			parse_utils.c \
+			print_screen.c
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_FDF}}
 
 OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}

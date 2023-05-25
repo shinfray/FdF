@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_close.c                                 :+:      :+:    :+:   */
+/*   initialize_quit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:57:21 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 21:00:25 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:30:48 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@ void	ft_set_fdf_data(t_fdf *s_fdf, char *path);
 void	ft_initialize_window(t_mlx_data *mlx_data);
 void	ft_set_hooks(t_fdf *s_fdf);
 double	ft_rad(int degree);
-int		ft_close(t_fdf *s_fdf);
+int		ft_clean_quit(t_fdf *s_fdf);
 
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path)
 {
 	s_fdf->s_file_data.path = path;
-	s_fdf->s_map_data.s_map = NULL;
 	s_fdf->s_isometric_data.interspace = INTERSPACE;
 	s_fdf->s_isometric_data.height = INTERSPACE;
 	s_fdf->s_isometric_data.angle = ft_rad(30);
-	s_fdf->s_isometric_data.origin_x = WINDOW_WIDTH / 2;
-	s_fdf->s_isometric_data.origin_y = WINDOW_HEIGHT / 8;
-	s_fdf->s_isometric_data.move_x = s_fdf->s_isometric_data.origin_x;
-	s_fdf->s_isometric_data.move_y = s_fdf->s_isometric_data.origin_y;
+	s_fdf->s_isometric_data.move_x = WINDOW_WIDTH / 2;
+	s_fdf->s_isometric_data.move_y = WINDOW_HEIGHT / 8;
 	s_fdf->mode = NORMAL_MODE;
 	s_fdf->toggle_menu = true;
 	s_fdf->drag_drop_status = false;
@@ -60,7 +57,7 @@ void	ft_set_hooks(t_fdf *s_fdf)
 {
 	mlx_key_hook(s_fdf->s_mlx_data.win_ptr, &ft_key_pressed, s_fdf);
 	mlx_mouse_hook(s_fdf->s_mlx_data.win_ptr, &ft_click, s_fdf);
-	mlx_hook(s_fdf->s_mlx_data.win_ptr, ON_DESTROY, 0, &ft_close, s_fdf);
+	mlx_hook(s_fdf->s_mlx_data.win_ptr, ON_DESTROY, 0, &ft_clean_quit, s_fdf);
 	mlx_hook(s_fdf->s_mlx_data.win_ptr, ON_KEYDOWN, 0, &ft_hold_key, s_fdf);
 	mlx_hook(s_fdf->s_mlx_data.win_ptr, ON_MOUSEUP, 0, &ft_unclick, s_fdf);
 	mlx_hook(s_fdf->s_mlx_data.win_ptr, ON_MOUSEMOVE, 0, &ft_move_mouse, s_fdf);
@@ -71,7 +68,7 @@ double	ft_rad(int degree)
 	return (degree * (M_PI / 180.0));
 }
 
-int	ft_close(t_fdf *s_fdf)
+int	ft_clean_quit(t_fdf *s_fdf)
 {
 	mlx_destroy_image(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.s_img.img);
 	mlx_destroy_window(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr);

@@ -6,16 +6,16 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 15:47:29 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:44:13 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 void				ft_draw_line(t_img_data *s_img, t_line *s_line);
+void				ft_pixel_put(t_img_data *s_image, t_point *s_point);
 static void			ft_draw_sharp_line(t_img_data *s_img, t_line *s_line);
 static void			ft_draw_obtuse_line(t_img_data *s_img, t_line *s_line);
-static void			ft_pixel_put(t_img_data *s_image, t_point *s_point);
 static unsigned int	ft_abs(int number);
 
 void	ft_draw_line(t_img_data *s_img, t_line *s_line)
@@ -29,6 +29,33 @@ void	ft_draw_line(t_img_data *s_img, t_line *s_line)
 		ft_draw_sharp_line(s_img, s_line);
 	else
 		ft_draw_obtuse_line(s_img, s_line);
+}
+
+/*
+ *	In the loop inside this function:
+ *	- the "if" case concern the big endian (MSB is the leftmost bit).
+ *	- the "else" case concern tle little endian (LSB is the leftmost bit).
+ *
+ */
+void	ft_pixel_put(t_img_data *s_image, t_point *s_point)
+{
+	char	*pixel;
+	int		i;
+
+	if (s_point->x < 0 || s_point->x >= WINDOW_WIDTH \
+		|| s_point->y < 0 || s_point->y >= WINDOW_HEIGHT)
+		return ;
+	i = s_image->bpp - 8;
+	pixel = s_image->addr \
+		+ (s_point->y * s_image->line_len + s_point->x * (s_image->bpp / 8));
+	while (i >= 0)
+	{
+		if (s_image->endian != 0)
+			*pixel++ = (s_point->colour >> i) & 0xFF;
+		else
+			*pixel++ = (s_point->colour >> (s_image->bpp - 8 - i)) & 0xFF;
+		i -= 8;
+	}
 }
 
 static void	ft_draw_sharp_line(t_img_data *s_img, t_line *s_line)
@@ -87,33 +114,6 @@ static void	ft_draw_obtuse_line(t_img_data *s_img, t_line *s_line)
 		s_line->start.y += y_increment;
 	}
 	ft_pixel_put(s_img, &(s_line->start));
-}
-
-/*
- *	In the loop inside this function:
- *	- the "if" case concern the big endian (MSB is the leftmost bit).
- *	- the "else" case concern tle little endian (LSB is the leftmost bit).
- *
- */
-static void	ft_pixel_put(t_img_data *s_image, t_point *s_point)
-{
-	char	*pixel;
-	int		i;
-
-	if (s_point->x < 0 || s_point->x >= WINDOW_WIDTH \
-		|| s_point->y < 0 || s_point->y >= WINDOW_HEIGHT)
-		return ;
-	i = s_image->bpp - 8;
-	pixel = s_image->addr \
-		+ (s_point->y * s_image->line_len + s_point->x * (s_image->bpp / 8));
-	while (i >= 0)
-	{
-		if (s_image->endian != 0)
-			*pixel++ = (s_point->colour >> i) & 0xFF;
-		else
-			*pixel++ = (s_point->colour >> (s_image->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}
 }
 
 static unsigned int	ft_abs(int number)

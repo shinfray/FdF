@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 20:29:31 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:29:46 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ typedef struct s_line {
 }				t_line;
 
 typedef struct s_isometric_data {
-	int		origin_x;
-	int		origin_y;
 	double	angle;
 	double	interspace;
 	double	height;
@@ -137,12 +135,19 @@ typedef struct s_fdf {
 	bool				exit_status;
 }				t_fdf;
 
-/*	INITIALIZE FUNCTIONS	*/
+/*	INITIALIZE_QUIT FUNCTIONS	*/
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path);
 void	ft_initialize_window(t_mlx_data *mlx_data);
 void	ft_set_hooks(t_fdf *s_fdf);
 double	ft_rad(int degree);
-int		ft_close(t_fdf *s_fdf);
+int		ft_clean_quit(t_fdf *s_fdf);
+
+/*	PARSE FUNCTIONS	*/
+void	ft_parse_map(t_fdf *s_fdf);
+
+/*	PARSE_UTILS FUNCTIONS	*/
+ssize_t	ft_check_file_format_and_map_size(t_fdf *s_fdf);
+char	*ft_free_row(char **row);
 
 /*	ISOMETRICS FUNCTIONS	*/
 void	ft_print_map(t_fdf *s_fdf);
@@ -150,18 +155,12 @@ void	ft_reprint_image(t_fdf *s_fdf);
 
 /*	BRESENHAM FUNCTIONS	*/
 void	ft_draw_line(t_img_data *s_img, t_line *s_line);
+void	ft_pixel_put(t_img_data *s_image, t_point *s_point);
 
 /*	INTERFACE FUNCTIONS	*/
 void	ft_refresh_interface(t_fdf *s_fdf);
 void	ft_print_help_menu(t_fdf *s_fdf);
 void	ft_print_actual_mode(t_fdf *s_fdf);
-
-/*	ACTIONS FUNCTIONS	*/
-void	ft_move(t_fdf *s_fdf, int keycode);
-void	ft_height(t_fdf *s_fdf, int keycode);
-void	ft_zoom(t_fdf *s_fdf, int keycode);
-void	ft_rotate(t_fdf *s_fdf, int keycode);
-void	ft_reset(t_fdf *s_fdf);
 
 /*	MOUSE_EVENTS FUNCTIONS	*/
 int		ft_click(int button, int x, int y, t_fdf *s_fdf);
@@ -172,11 +171,11 @@ int		ft_move_mouse(int x, int y, t_fdf *s_fdf);
 int		ft_key_pressed(int keycode, t_fdf *s_fdf);
 int		ft_hold_key(int keycode, t_fdf *s_fdf);
 
-/*	PARSE FUNCTIONS	*/
-void	ft_parse_map(t_fdf *s_fdf);
-
-/*	PARSE_UTILS FUNCTIONS	*/
-ssize_t	ft_check_file_format_and_map_size(t_fdf *s_fdf);
-char	*ft_free_row(char **row);
+/*	ACTIONS FUNCTIONS	*/
+void	ft_move(t_fdf *s_fdf, int keycode);
+void	ft_height(t_fdf *s_fdf, int keycode);
+void	ft_zoom(t_fdf *s_fdf, int keycode);
+void	ft_rotate(t_fdf *s_fdf, int keycode);
+void	ft_reset(t_fdf *s_fdf);
 
 #endif
