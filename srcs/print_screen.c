@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:50:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/26 04:06:51 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/26 04:48:06 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,15 @@ static t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 	const int		previous_z = point.z * (s_isometric_data->height);
 
 	point.x = previous_x * cos(beta) * cos(gamma) \
-			+ previous_y * (sin(alpha) * sin(beta) * cos(gamma) - cos(alpha) * sin(gamma)) \
-			+ previous_z * (cos(alpha) * sin(beta) * cos(gamma) + sin(alpha) * sin(gamma));
+			+ previous_y \
+			* (sin(alpha) * sin(beta) * cos(gamma) - cos(alpha) * sin(gamma)) \
+			+ previous_z \
+			* (cos(alpha) * sin(beta) * cos(gamma) + sin(alpha) * sin(gamma));
 	point.y = previous_x * cos(beta) * sin(gamma) \
-			+ previous_y * (sin(alpha) * sin(beta) * sin(gamma) + cos(alpha) * cos(gamma)) \
-			+ previous_z * (cos(alpha) * sin(beta) * sin(gamma) - sin(alpha) * cos(gamma));
+			+ previous_y \
+			* (sin(alpha) * sin(beta) * sin(gamma) + cos(alpha) * cos(gamma)) \
+			+ previous_z \
+			* (cos(alpha) * sin(beta) * sin(gamma) - sin(alpha) * cos(gamma));
 	point.z = previous_x * -sin(beta) \
 			+ previous_y * sin(alpha) * cos(beta) \
 			+ previous_z * cos(alpha) * cos(beta);
