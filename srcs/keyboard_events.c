@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:12:39 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 22:31:01 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/26 04:19:55 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	ft_hold_key(int keycode, t_fdf *s_fdf)
 	void		(*ft_mode[4])(t_fdf *, int);
 
 	if (keycode == UP_KEY || keycode == DOWN_KEY \
-			|| keycode == LEFT_KEY || keycode == RIGHT_KEY)
+			|| keycode == LEFT_KEY || keycode == RIGHT_KEY \
+			|| keycode == COMMA_KEY || keycode == POINT_KEY)
 	{
 		(ft_mode[0]) = &ft_move;
 		(ft_mode[1]) = &ft_height;

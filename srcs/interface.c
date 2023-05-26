@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:25:21 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/23 16:36:22 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:36:221y shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ void	ft_print_help_menu(t_fdf *s_fdf)
 	mlx_string_put(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, \
 			10, 90, WHITE, "X: RESET");
 	mlx_string_put(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, \
-			10, 110, WHITE, "USE ARROW KEYS");
+			10, 110, WHITE, "M: TOGGLE HELP MENU");
 	mlx_string_put(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, \
-			10, 1300, WHITE, "M: TOGGLE HELP MENU");
+			10, 130, WHITE, "USE ARROW KEYS");
+	mlx_string_put(s_fdf->s_mlx_data.mlx_ptr, s_fdf->s_mlx_data.win_ptr, \
+			10, 150, WHITE, "USE , AND . FOR THE THIRD ROTATION");
 }
 
 void	ft_print_actual_mode(t_fdf *s_fdf)

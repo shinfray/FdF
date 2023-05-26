@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 22:29:46 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/26 03:15:38 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define R_KEY 15
 # define X_KEY 7
 # define Z_KEY 6
+# define COMMA_KEY 43
+# define POINT_KEY 47
 
 # define WHITE 0xFFFFFF
 # define GREEN 0x00FF00
@@ -102,7 +104,9 @@ typedef struct s_line {
 }				t_line;
 
 typedef struct s_isometric_data {
-	double	angle;
+	double	angle_x;
+	double	angle_y;
+	double	angle_z;
 	double	interspace;
 	double	height;
 	int		move_x;

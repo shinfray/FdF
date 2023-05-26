@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:50:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 22:31:27 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/26 04:06:51 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,23 @@ static void	ft_print_colums(t_fdf *s_fdf, t_line *s_line)
 
 static t_point	ft_isometric(t_point point, t_isometric_data *s_isometric_data)
 {
-	int	previous_x;
-	int	previous_y;
-	int	previous_z;
+	const double	alpha = s_isometric_data->angle_x;
+	const double	beta = s_isometric_data->angle_y;
+	const double	gamma = s_isometric_data->angle_z;
+	const int		previous_x = point.x * s_isometric_data->interspace;
+	const int		previous_y = point.y * s_isometric_data->interspace;
+	const int		previous_z = point.z * (s_isometric_data->height);
 
-	previous_x = point.x * s_isometric_data->interspace;
-	previous_y = point.y * s_isometric_data->interspace;
-	previous_z = point.z * (s_isometric_data->height);
-	point.x = s_isometric_data->move_x \
-		+ (previous_x - previous_y) * cos(s_isometric_data->angle);
-	point.y = s_isometric_data->move_y \
-		+ -(previous_z) \
-		+ (previous_x + previous_y) * sin(s_isometric_data->angle);
+	point.x = previous_x * cos(beta) * cos(gamma) \
+			+ previous_y * (sin(alpha) * sin(beta) * cos(gamma) - cos(alpha) * sin(gamma)) \
+			+ previous_z * (cos(alpha) * sin(beta) * cos(gamma) + sin(alpha) * sin(gamma));
+	point.y = previous_x * cos(beta) * sin(gamma) \
+			+ previous_y * (sin(alpha) * sin(beta) * sin(gamma) + cos(alpha) * cos(gamma)) \
+			+ previous_z * (cos(alpha) * sin(beta) * sin(gamma) - sin(alpha) * cos(gamma));
+	point.z = previous_x * -sin(beta) \
+			+ previous_y * sin(alpha) * cos(beta) \
+			+ previous_z * cos(alpha) * cos(beta);
+	point.x += s_isometric_data->move_x;
+	point.y = point.y + s_isometric_data->move_y;
 	return (point);
 }
