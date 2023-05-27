@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:41:30 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 22:31:13 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/27 02:34:46 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_parse_map(t_fdf *s_fdf)
 		}
 	}
 	s_fdf->exit_status = EXIT_FAILURE;
+	ft_putendl_fd("Map initialization error", 2);
 	ft_clean_quit(s_fdf);
 }
 

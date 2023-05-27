@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 20:21:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 20:30:09 by shinfray         ###   ########.fr       */
+/*   Created: 2023/05/27 02:53:14 by shinfray          #+#    #+#             */
+/*   Updated: 2023/05/27 02:53:15 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static bool	ft_check_file_extension(const char *path)
 	if (file_extension == NULL || file_extension[4] != '\0' \
 		|| file_extension == path)
 	{
-		errno = EINVAL;
+		errno = EFTYPE;
 		return (1);
 	}
 	return (0);
