@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/26 03:15:38 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/27 01:38:50 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct s_line {
 	t_point	end;
 }				t_line;
 
-typedef struct s_isometric_data {
+typedef struct s_isometric {
 	double	angle_x;
 	double	angle_y;
 	double	angle_z;
@@ -111,7 +111,7 @@ typedef struct s_isometric_data {
 	double	height;
 	int		move_x;
 	int		move_y;
-}				t_isometric_data;
+}				t_isometric;
 
 typedef struct s_map_data {
 	t_point		*s_map;
@@ -130,7 +130,7 @@ typedef struct s_drag_drop_data {
 typedef struct s_fdf {
 	t_mlx_data			s_mlx_data;
 	t_file_data			s_file_data;
-	t_isometric_data	s_isometric_data;
+	t_isometric	s_isometric;
 	t_map_data			s_map_data;
 	t_drag_drop_data	s_drag_drop_data;
 	int					mode;
@@ -153,9 +153,12 @@ void	ft_parse_map(t_fdf *s_fdf);
 ssize_t	ft_check_file_format_and_map_size(t_fdf *s_fdf);
 char	*ft_free_row(char **row);
 
-/*	ISOMETRICS FUNCTIONS	*/
+/*	PRINT_SCREEN FUNCTIONS	*/
 void	ft_print_map(t_fdf *s_fdf);
 void	ft_reprint_image(t_fdf *s_fdf);
+
+/*	PROJECTION FUNCTIONS	*/
+t_point	ft_isometric(t_point s_point, t_isometric *s_isometric);
 
 /*	BRESENHAM FUNCTIONS	*/
 void	ft_draw_line(t_img_data *s_img, t_line *s_line);

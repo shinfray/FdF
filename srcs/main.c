@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:44:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 20:41:35 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/27 01:59:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	main(int argc, char **argv)
 {
 	t_fdf	s_fdf;
 
+	errno = 0;
 	if (argc != 2)
 	{
-		errno = EINVAL;
-		perror("ERROR");
+		ft_putendl_fd("Usage: ./fdf MAP_FILE", 2);
 		exit(EXIT_FAILURE);
 	}
 	ft_set_fdf_data(&s_fdf, argv[1]);

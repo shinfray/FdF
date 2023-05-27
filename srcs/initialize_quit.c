@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:57:21 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/26 04:13:31 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/27 01:32:02 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int		ft_clean_quit(t_fdf *s_fdf);
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path)
 {
 	s_fdf->s_file_data.path = path;
-	s_fdf->s_isometric_data.interspace = INTERSPACE;
-	s_fdf->s_isometric_data.height = INTERSPACE;
-	s_fdf->s_isometric_data.angle_x = asin(tan(ft_rad(30)));
-	s_fdf->s_isometric_data.angle_y = ft_rad(0);
-	s_fdf->s_isometric_data.angle_z = ft_rad(45);
-	s_fdf->s_isometric_data.move_x = WINDOW_WIDTH / 2;
-	s_fdf->s_isometric_data.move_y = WINDOW_HEIGHT / 8;
+	s_fdf->s_isometric.interspace = INTERSPACE;
+	s_fdf->s_isometric.height = INTERSPACE;
+	s_fdf->s_isometric.angle_x = asin(tan(ft_rad(30)));
+	s_fdf->s_isometric.angle_y = ft_rad(0);
+	s_fdf->s_isometric.angle_z = ft_rad(45);
+	s_fdf->s_isometric.move_x = WINDOW_WIDTH / 2;
+	s_fdf->s_isometric.move_y = WINDOW_HEIGHT / 8;
 	s_fdf->mode = NORMAL_MODE;
 	s_fdf->toggle_menu = true;
 	s_fdf->drag_drop_status = false;
