@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:12:39 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/27 01:41:22 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 22:31:36 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	ft_key_pressed(int keycode, t_fdf *s_fdf)
 	if (keycode == ESCAPE_KEY)
 		return (ft_clean_quit(s_fdf));
 	else if (keycode == M_KEY)
+	{
+		s_fdf->toggle_menu = s_fdf->toggle_menu ^ 1;
 		ft_refresh_interface(s_fdf);
+	}
 	else if (keycode == N_KEY)
 		s_fdf->mode = NORMAL_MODE;
 	else if (keycode == R_KEY)
