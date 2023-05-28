@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/27 02:54:52 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:22:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@
 # define POINT_KEY 47
 
 # define WHITE 0xFFFFFF
+# define RED 0xFF0000
 # define GREEN 0x00FF00
+# define BLUE 0x0000FF
 # define DEFAULT_COLOUR GREEN
 
 enum	e_events {
@@ -72,24 +74,24 @@ enum	e_modes {
 	ROTATE_MODE,
 };
 
-typedef struct s_img_data {
+typedef struct s_img {
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}				t_img_data;
+}				t_img;
 
-typedef struct s_mlx_data {
+typedef struct s_mlx {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_img_data	s_img;
-}				t_mlx_data;
+	t_img	s_img;
+}				t_mlx;
 
-typedef struct s_file_data {
+typedef struct s_file {
 	int		fd;
 	char	*path;
-}				t_file_data;
+}				t_file;
 
 typedef struct s_point {
 	int		x;
@@ -113,35 +115,35 @@ typedef struct s_isometric {
 	int		move_y;
 }				t_isometric;
 
-typedef struct s_map_data {
-	t_point		*s_map;
+typedef struct s_map {
+	t_point		*s_map_addr;
 	int			total_row;
 	int			total_column;
 	ssize_t		total_size;
-}				t_map_data;
+}				t_map;
 
-typedef struct s_drag_drop_data {
+typedef struct s_mouse_pos {
 	int	click_pos_x;
 	int	click_pos_y;
 	int	previous_pos_x;
 	int	previous_pos_y;
-}				t_drag_drop_data;
+}				t_mouse_pos;
 
 typedef struct s_fdf {
-	t_mlx_data			s_mlx_data;
-	t_file_data			s_file_data;
-	t_isometric			s_isometric;
-	t_map_data			s_map_data;
-	t_drag_drop_data	s_drag_drop_data;
-	int					mode;
-	bool				toggle_menu;
-	bool				drag_drop_status;
-	bool				exit_status;
+	t_mlx		s_mlx;
+	t_file		s_file;
+	t_isometric	s_isometric;
+	t_map	s_map;
+	t_mouse_pos	s_mouse_pos;
+	int			mode;
+	bool		toggle_menu;
+	bool		drag_drop_status;
+	bool		exit_status;
 }				t_fdf;
 
 /*	INITIALIZE_QUIT FUNCTIONS	*/
 void	ft_set_fdf_data(t_fdf *s_fdf, char *path);
-void	ft_initialize_window(t_mlx_data *mlx_data);
+void	ft_initialize_window(t_mlx *mlx_data);
 void	ft_set_hooks(t_fdf *s_fdf);
 double	ft_rad(int degree);
 int		ft_clean_quit(t_fdf *s_fdf);
@@ -161,8 +163,8 @@ void	ft_reprint_image(t_fdf *s_fdf);
 t_point	ft_isometric(t_point s_point, t_isometric *s_isometric);
 
 /*	BRESENHAM FUNCTIONS	*/
-void	ft_draw_line(t_img_data *s_img, t_line *s_line);
-void	ft_pixel_put(t_img_data *s_image, t_point *s_point);
+void	ft_draw_line(t_img *s_img, t_line *s_line);
+void	ft_pixel_put(t_img *s_image, t_point *s_point);
 
 /*	INTERFACE FUNCTIONS	*/
 void	ft_refresh_interface(t_fdf *s_fdf);

@@ -6,19 +6,19 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/25 21:44:13 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:17:32 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void				ft_draw_line(t_img_data *s_img, t_line *s_line);
-void				ft_pixel_put(t_img_data *s_image, t_point *s_point);
-static void			ft_draw_sharp_line(t_img_data *s_img, t_line *s_line);
-static void			ft_draw_obtuse_line(t_img_data *s_img, t_line *s_line);
+void				ft_draw_line(t_img *s_img, t_line *s_line);
+void				ft_pixel_put(t_img *s_image, t_point *s_point);
+static void			ft_draw_sharp_line(t_img *s_img, t_line *s_line);
+static void			ft_draw_obtuse_line(t_img *s_img, t_line *s_line);
 static unsigned int	ft_abs(int number);
 
-void	ft_draw_line(t_img_data *s_img, t_line *s_line)
+void	ft_draw_line(t_img *s_img, t_line *s_line)
 {
 	int	dx;
 	int	dy;
@@ -37,7 +37,7 @@ void	ft_draw_line(t_img_data *s_img, t_line *s_line)
  *	- the "else" case concern tle little endian (LSB is the leftmost bit).
  *
  */
-void	ft_pixel_put(t_img_data *s_image, t_point *s_point)
+void	ft_pixel_put(t_img *s_image, t_point *s_point)
 {
 	char	*pixel;
 	int		i;
@@ -58,7 +58,7 @@ void	ft_pixel_put(t_img_data *s_image, t_point *s_point)
 	}
 }
 
-static void	ft_draw_sharp_line(t_img_data *s_img, t_line *s_line)
+static void	ft_draw_sharp_line(t_img *s_img, t_line *s_line)
 {
 	const int	dx = 2 * ft_abs(s_line->end.x - s_line->start.x);
 	const int	dy = 2 * ft_abs(s_line->end.y - s_line->start.y);
@@ -87,7 +87,7 @@ static void	ft_draw_sharp_line(t_img_data *s_img, t_line *s_line)
 	ft_pixel_put(s_img, &(s_line->start));
 }
 
-static void	ft_draw_obtuse_line(t_img_data *s_img, t_line *s_line)
+static void	ft_draw_obtuse_line(t_img *s_img, t_line *s_line)
 {
 	const int	dx = 2 * ft_abs(s_line->end.x - s_line->start.x);
 	const int	dy = 2 * ft_abs(s_line->end.y - s_line->start.y);

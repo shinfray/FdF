@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 02:53:14 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/27 02:53:15 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:22:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@ ssize_t	ft_check_file_format_and_map_size(t_fdf *s_fdf)
 {
 	char	**row;
 
-	if (ft_check_file_extension(s_fdf->s_file_data.path) == 1)
+	if (ft_check_file_extension(s_fdf->s_file.path) == 1)
 		return (-1);
-	s_fdf->s_file_data.fd = open(s_fdf->s_file_data.path, O_RDONLY);
-	if (s_fdf->s_file_data.fd == -1)
+	s_fdf->s_file.fd = open(s_fdf->s_file.path, O_RDONLY);
+	if (s_fdf->s_file.fd == -1)
 		return (-1);
-	row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
+	row = ft_split(get_next_line(s_fdf->s_file.fd), " \n");
 	if (row == NULL)
 		return (-1);
-	s_fdf->s_map_data.total_row = 0;
-	s_fdf->s_map_data.total_column = ft_array_of_str_len(row);
+	s_fdf->s_map.total_row = 0;
+	s_fdf->s_map.total_column = ft_array_of_str_len(row);
 	while (row != NULL)
 	{
 		ft_free_row(row);
-		++(s_fdf->s_map_data.total_row);
-		row = ft_split(get_next_line(s_fdf->s_file_data.fd), " \n");
-		if (ft_check_number_column(s_fdf->s_map_data.total_column, row) == 1)
+		++(s_fdf->s_map.total_row);
+		row = ft_split(get_next_line(s_fdf->s_file.fd), " \n");
+		if (ft_check_number_column(s_fdf->s_map.total_column, row) == 1)
 			return (-1);
 	}
-	close(s_fdf->s_file_data.fd);
-	return (s_fdf->s_map_data.total_column * s_fdf->s_map_data.total_row);
+	close(s_fdf->s_file.fd);
+	return (s_fdf->s_map.total_column * s_fdf->s_map.total_row);
 }
 
 char	*ft_free_row(char **row)
