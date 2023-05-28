@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:47:34 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/28 10:15:20 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:27:25 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ int	ft_move_mouse(int x, int y, t_fdf *s_fdf)
 {
 	if (s_fdf->drag_drop_status == true)
 	{
-		s_fdf->s_isometric.move_x = x \
-			- s_fdf->s_mouse_pos.click_pos_x \
+		s_fdf->s_isometric.move_x = x - s_fdf->s_mouse_pos.click_pos_x \
 			+ s_fdf->s_mouse_pos.previous_pos_x;
-		s_fdf->s_isometric.move_y = y \
-			- s_fdf->s_mouse_pos.click_pos_y \
+		s_fdf->s_isometric.move_y = y - s_fdf->s_mouse_pos.click_pos_y \
 			+ s_fdf->s_mouse_pos.previous_pos_y;
 		ft_reprint_image(s_fdf);
 	}

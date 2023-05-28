@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 02:52:59 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/28 10:22:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:29:40 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			ft_reprint_image(t_fdf *s_fdf);
 static void		ft_print_rows(t_fdf *s_fdf, t_line *s_line);
 static void		ft_print_colums(t_fdf *s_fdf, t_line *s_line);
 
-/* à protéger quand il n'y a qu'un point, qu'une ligne, ... */
 void	ft_print_map(t_fdf *s_fdf)
 {
 	t_line	s_line;
@@ -50,10 +49,8 @@ void	ft_reprint_image(t_fdf *s_fdf)
 		s_fdf->exit_status = EXIT_FAILURE;
 		ft_clean_quit(s_fdf);
 	}
-	s_fdf->s_mlx.s_img.addr = \
-			mlx_get_data_addr(s_fdf->s_mlx.s_img.img, \
-			&(s_fdf->s_mlx.s_img.bpp), \
-			&(s_fdf->s_mlx.s_img.line_len), \
+	s_fdf->s_mlx.s_img.addr = mlx_get_data_addr(s_fdf->s_mlx.s_img.img, \
+			&(s_fdf->s_mlx.s_img.bpp), &(s_fdf->s_mlx.s_img.line_len), \
 			&(s_fdf->s_mlx.s_img.endian));
 	ft_print_map(s_fdf);
 	mlx_destroy_image(s_fdf->s_mlx.mlx_ptr, backup);

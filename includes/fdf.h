@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/28 10:22:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:24:43 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ typedef struct s_img {
 }				t_img;
 
 typedef struct s_mlx {
-	void		*mlx_ptr;
-	void		*win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	t_img	s_img;
 }				t_mlx;
 
@@ -133,7 +133,7 @@ typedef struct s_fdf {
 	t_mlx		s_mlx;
 	t_file		s_file;
 	t_isometric	s_isometric;
-	t_map	s_map;
+	t_map		s_map;
 	t_mouse_pos	s_mouse_pos;
 	int			mode;
 	bool		toggle_menu;
