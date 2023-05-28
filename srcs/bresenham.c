@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 18:40:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/28 10:17:32 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:18:55 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,58 @@
 
 void				ft_draw_line(t_img *s_img, t_line *s_line);
 void				ft_pixel_put(t_img *s_image, t_point *s_point);
-static void			ft_draw_sharp_line(t_img *s_img, t_line *s_line);
-static void			ft_draw_obtuse_line(t_img *s_img, t_line *s_line);
+// static void		ft_draw_sharp_line(t_img *s_img, t_line *s_line);
+// static void		ft_draw_obtuse_line(t_img *s_img, t_line *s_line);
 static unsigned int	ft_abs(int number);
+static void			ft_check_sign(t_line *s_line, t_point *sign);
 
 void	ft_draw_line(t_img *s_img, t_line *s_line)
 {
-	int	dx;
-	int	dy;
+	const int	dx = ft_abs(s_line->end.x - s_line->start.x);
+	const int	dy = ft_abs(s_line->end.y - s_line->start.y);
+	t_point		sign;
+	int			error;
 
-	dx = ft_abs(s_line->end.x - s_line->start.x);
-	dy = ft_abs(s_line->end.y - s_line->start.y);
-	if (dx > dy)
-		ft_draw_sharp_line(s_img, s_line);
-	else
-		ft_draw_obtuse_line(s_img, s_line);
+	ft_check_sign(s_line, &sign);
+	error = dx - dy;
+	while (s_line->start.x != s_line->end.x || s_line->start.y != s_line->end.y)
+	{
+		ft_pixel_put(s_img, &(s_line->start));
+		if (error * 2 > -dy)
+		{
+			error -= dy;
+			s_line->start.x += sign.x;
+		}
+		else if (error * 2 < dx)
+		{
+			error += dx;
+			s_line->start.y += sign.y;
+		}
+	}
 }
+
+static void	ft_check_sign(t_line *s_line, t_point *sign)
+{
+	sign->x = 1;
+	sign->y = 1;
+	if (s_line->start.x >= s_line->end.x)
+		sign->x *= -1;
+	if (s_line->start.y >= s_line->end.y)
+		sign->y *= -1;
+}
+
+// void	ft_draw_line(t_img *s_img, t_line *s_line)
+// {
+// 	int	dx;
+// 	int	dy;
+
+// 	dx = ft_abs(s_line->end.x - s_line->start.x);
+// 	dy = ft_abs(s_line->end.y - s_line->start.y);
+// 	if (dx > dy)
+// 		ft_draw_sharp_line(s_img, s_line);
+// 	else
+// 		ft_draw_obtuse_line(s_img, s_line);
+// }
 
 /*
  *	In the loop inside this function:
@@ -58,63 +94,63 @@ void	ft_pixel_put(t_img *s_image, t_point *s_point)
 	}
 }
 
-static void	ft_draw_sharp_line(t_img *s_img, t_line *s_line)
-{
-	const int	dx = 2 * ft_abs(s_line->end.x - s_line->start.x);
-	const int	dy = 2 * ft_abs(s_line->end.y - s_line->start.y);
-	int			e;
-	int			x_increment;
-	int			y_increment;
+// static void	ft_draw_sharp_line(t_img *s_img, t_line *s_line)
+// {
+// 	const int	dx = 2 * ft_abs(s_line->end.x - s_line->start.x);
+// 	const int	dy = 2 * ft_abs(s_line->end.y - s_line->start.y);
+// 	int			e;
+// 	int			x_increment;
+// 	int			y_increment;
 
-	e = ft_abs(s_line->end.x - s_line->start.x);
-	x_increment = 1;
-	if (s_line->start.x > s_line->end.x)
-		x_increment = -1;
-	y_increment = 1;
-	if (s_line->start.y > s_line->end.y)
-		y_increment = -1;
-	while (s_line->start.x != s_line->end.x)
-	{
-		ft_pixel_put(s_img, &(s_line->start));
-		e -= dy;
-		if (e < 0)
-		{
-			s_line->start.y += y_increment;
-			e += dx;
-		}
-		s_line->start.x += x_increment;
-	}
-	ft_pixel_put(s_img, &(s_line->start));
-}
+// 	e = ft_abs(s_line->end.x - s_line->start.x);
+// 	x_increment = 1;
+// 	if (s_line->start.x > s_line->end.x)
+// 		x_increment = -1;
+// 	y_increment = 1;
+// 	if (s_line->start.y > s_line->end.y)
+// 		y_increment = -1;
+// 	while (s_line->start.x != s_line->end.x)
+// 	{
+// 		ft_pixel_put(s_img, &(s_line->start));
+// 		e -= dy;
+// 		if (e < 0)
+// 		{
+// 			s_line->start.y += y_increment;
+// 			e += dx;
+// 		}
+// 		s_line->start.x += x_increment;
+// 	}
+// 	ft_pixel_put(s_img, &(s_line->start));
+// }
 
-static void	ft_draw_obtuse_line(t_img *s_img, t_line *s_line)
-{
-	const int	dx = 2 * ft_abs(s_line->end.x - s_line->start.x);
-	const int	dy = 2 * ft_abs(s_line->end.y - s_line->start.y);
-	int			e;
-	int			x_increment;
-	int			y_increment;
+// static void	ft_draw_obtuse_line(t_img *s_img, t_line *s_line)
+// {
+// 	const int	dx = 2 * ft_abs(s_line->end.x - s_line->start.x);
+// 	const int	dy = 2 * ft_abs(s_line->end.y - s_line->start.y);
+// 	int			e;
+// 	int			x_increment;
+// 	int			y_increment;
 
-	e = ft_abs(s_line->end.y - s_line->start.y);
-	x_increment = 1;
-	if (s_line->start.x > s_line->end.x)
-		x_increment = -1;
-	y_increment = 1;
-	if (s_line->start.y > s_line->end.y)
-		y_increment = -1;
-	while (s_line->start.x != s_line->end.x)
-	{
-		ft_pixel_put(s_img, &(s_line->start));
-		e -= dx;
-		if (e < 0)
-		{
-			s_line->start.x += x_increment;
-			e += dy;
-		}
-		s_line->start.y += y_increment;
-	}
-	ft_pixel_put(s_img, &(s_line->start));
-}
+// 	e = ft_abs(s_line->end.y - s_line->start.y);
+// 	x_increment = 1;
+// 	if (s_line->start.x > s_line->end.x)
+// 		x_increment = -1;
+// 	y_increment = 1;
+// 	if (s_line->start.y > s_line->end.y)
+// 		y_increment = -1;
+// 	while (s_line->start.x != s_line->end.x)
+// 	{
+// 		ft_pixel_put(s_img, &(s_line->start));
+// 		e -= dx;
+// 		if (e < 0)
+// 		{
+// 			s_line->start.x += x_increment;
+// 			e += dy;
+// 		}
+// 		s_line->start.y += y_increment;
+// 	}
+// 	ft_pixel_put(s_img, &(s_line->start));
+// }
 
 static unsigned int	ft_abs(int number)
 {
