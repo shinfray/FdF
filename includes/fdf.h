@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/30 13:58:10 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:53:04 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@
 # define BLUE 0x0000FF
 # define DEFAULT_COLOUR GREEN
 
-enum	e_events {
+enum	e_events
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -67,14 +68,16 @@ enum	e_events {
 	ON_DESTROY = 17
 };
 
-enum	e_modes {
+enum	e_modes
+{
 	NORMAL_MODE,
 	HEIGHT_MODE,
 	ZOOM_MODE,
 	ROTATE_MODE,
 };
 
-typedef struct s_img {
+typedef struct	s_img
+{
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -82,36 +85,42 @@ typedef struct s_img {
 	int		endian;
 }				t_img;
 
-typedef struct s_mlx {
+typedef struct	s_mlx
+{
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	s_img;
 }				t_mlx;
 
-typedef struct s_file {
+typedef struct	s_file
+{
 	int		fd;
 	char	*path;
 }				t_file;
 
-typedef struct s_point {
+typedef struct	s_point
+{
 	int		x;
 	int		y;
 	int		z;
 	int		colour;
 }				t_point;
 
-typedef struct s_line {
+typedef struct	s_line
+{
 	t_point	start;
 	t_point	end;
 }				t_line;
 
-typedef struct s_bresenham {
+typedef struct	s_bresenham
+{
 	int	sign_x;
 	int	sign_y;
 	int	error;
 }				t_bresenham;
 
-typedef struct s_isometric {
+typedef struct	s_isometric
+{
 	double	angle_x;
 	double	angle_y;
 	double	angle_z;
@@ -121,21 +130,24 @@ typedef struct s_isometric {
 	int		move_y;
 }				t_isometric;
 
-typedef struct s_map {
+typedef struct	s_map
+{
 	t_point		*s_map_addr;
 	int			total_row;
 	int			total_column;
 	ssize_t		total_size;
 }				t_map;
 
-typedef struct s_mouse_pos {
+typedef struct	s_mouse_pos
+{
 	int	click_pos_x;
 	int	click_pos_y;
 	int	previous_pos_x;
 	int	previous_pos_y;
 }				t_mouse_pos;
 
-typedef struct s_fdf {
+typedef struct	s_fdf
+{
 	t_mlx		s_mlx;
 	t_file		s_file;
 	t_isometric	s_isometric;
