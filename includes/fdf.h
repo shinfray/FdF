@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:01 by shinfray          #+#    #+#             */
-/*   Updated: 2023/05/28 10:24:43 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:58:10 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,12 @@ typedef struct s_line {
 	t_point	start;
 	t_point	end;
 }				t_line;
+
+typedef struct s_bresenham {
+	int	sign_x;
+	int	sign_y;
+	int	error;
+}				t_bresenham;
 
 typedef struct s_isometric {
 	double	angle_x;
