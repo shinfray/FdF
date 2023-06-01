@@ -1,0 +1,24 @@
+==74366== LEAK SUMMARY:
+==74366==    definitely lost: 10,772 bytes in 225 blocks
+==74366==    indirectly lost: 5,632 bytes in 129 blocks
+==74366==      possibly lost: 1,312 bytes in 20 blocks
+==74366==    still reachable: 25,228 bytes in 80 blocks
+==74366==         suppressed: 1,377,379 bytes in 400 blocks
+==74366== Reachable blocks (those to which a pointer was found) are not shown.
+==74366== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==74366==
+==74366== For lists of detected and suppressed errors, rerun with: -s
+==74366== ERROR SUMMARY: 184 errors from 184 contexts (suppressed: 69 from 14)
+
+
+==76381== LEAK SUMMARY:
+==76381==    definitely lost: 10,772 bytes in 225 blocks
+==76381==    indirectly lost: 5,632 bytes in 129 blocks
+==76381==      possibly lost: 1,312 bytes in 20 blocks
+==76381==    still reachable: 25,228 bytes in 80 blocks
+==76381==         suppressed: 1,377,467 bytes in 401 blocks
+==76381== Reachable blocks (those to which a pointer was found) are not shown.
+==76381== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==76381==
+==76381== For lists of detected and suppressed errors, rerun with: -s
+==76381== ERROR SUMMARY: 184 errors from 184 contexts (suppressed: 66 from 14)
