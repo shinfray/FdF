@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/01 12:15:40 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/16 10:54:29 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME:=	fdf
 
 BUILD_DIR:= build
-SRCS_DIR:= srcs
+SRCS_DIR:= src
 
 SRCS_FDF:= 	actions.c \
 			bresenham.c \
@@ -34,17 +34,17 @@ OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
 
 DEPS:=	${OBJS:.o=.d}
 
-LIBFT:=	libs/libft/libft.a
-MLX:=	libs/minilibx_macos/libmlx.a
-CFLAGS:= -Wall -Wextra -Werror
+LIBFT:=	lib/libft/libft.a
+MLX:=	lib/minilibx_macos/libmlx.a
+CFLAGS:= -Wall -Wextra -Werror -Wpedantic
 
-# ROOT_INC_DIRS:= includes libs/libft/includes libs/minilibx_macos
+# ROOT_INC_DIRS:= include lib/libft/include lib/minilibx_macos
 # INC_DIRS:= ${shell find ${ROOT_INC_DIRS} -type d}
-INC_DIRS:= includes libs/libft/includes libs/minilibx_macos
+INC_DIRS:= include lib/libft/include lib/minilibx_macos
 
 CPPFLAGS:= ${addprefix -I,${INC_DIRS}} -MMD -MP
 
-LIB_DIR:= libs/libft libs/minilibx_macos
+LIB_DIR:= lib/libft lib/minilibx_macos
 LDFLAGS:= ${addprefix -L,${LIB_DIR}}
 LDLIBS:= -lm -lft -lmlx -framework OpenGL -framework Appkit
 
